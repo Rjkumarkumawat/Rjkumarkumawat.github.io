@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Advanced Google Dorking for Target Reconnaissance | RajkumaR&#39;s CyberSec Blog</title>
+<meta name="keywords" content="OSINT, Reconnaissance, Google Dorking, Ethical Hacking">
+<meta name="description" content="Google Dorking (also known as Google Hacking) is a powerful method used in Open Source Intelligence (OSINT) to extract sensitive information from search engines using advanced search operators. As cybersecurity enthusiasts, especially in the RajkumaR CyberSec Blog, we explore how attackers and ethical hackers utilize these dorks in real-world reconnaissance.
+
+🔍 What is Google Dorking?
+Google Dorking involves using advanced search operators to uncover exposed files, login panels, debug pages, and misconfigured servers. It helps penetration testers, bug bounty hunters, and red teamers gather actionable intelligence.">
+<meta name="author" content="Rajkumar Kumawat">
+<link rel="canonical" href="http://localhost/posts/google-dorking/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost/posts/google-dorking/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost/posts/google-dorking/">
+  <meta property="og:site_name" content="RajkumaR&#39;s CyberSec Blog">
+  <meta property="og:title" content="Advanced Google Dorking for Target Reconnaissance">
+  <meta property="og:description" content="Google Dorking (also known as Google Hacking) is a powerful method used in Open Source Intelligence (OSINT) to extract sensitive information from search engines using advanced search operators. As cybersecurity enthusiasts, especially in the RajkumaR CyberSec Blog, we explore how attackers and ethical hackers utilize these dorks in real-world reconnaissance.
+🔍 What is Google Dorking? Google Dorking involves using advanced search operators to uncover exposed files, login panels, debug pages, and misconfigured servers. It helps penetration testers, bug bounty hunters, and red teamers gather actionable intelligence.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-01T00:00:00+00:00">
+    <meta property="article:tag" content="OSINT">
+    <meta property="article:tag" content="Reconnaissance">
+    <meta property="article:tag" content="Google Dorking">
+    <meta property="article:tag" content="Ethical Hacking">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Advanced Google Dorking for Target Reconnaissance">
+<meta name="twitter:description" content="Google Dorking (also known as Google Hacking) is a powerful method used in Open Source Intelligence (OSINT) to extract sensitive information from search engines using advanced search operators. As cybersecurity enthusiasts, especially in the RajkumaR CyberSec Blog, we explore how attackers and ethical hackers utilize these dorks in real-world reconnaissance.
+
+🔍 What is Google Dorking?
+Google Dorking involves using advanced search operators to uncover exposed files, login panels, debug pages, and misconfigured servers. It helps penetration testers, bug bounty hunters, and red teamers gather actionable intelligence.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Advanced Google Dorking for Target Reconnaissance",
+      "item": "http://localhost/posts/google-dorking/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Advanced Google Dorking for Target Reconnaissance",
+  "name": "Advanced Google Dorking for Target Reconnaissance",
+  "description": "Google Dorking (also known as Google Hacking) is a powerful method used in Open Source Intelligence (OSINT) to extract sensitive information from search engines using advanced search operators. As cybersecurity enthusiasts, especially in the RajkumaR CyberSec Blog, we explore how attackers and ethical hackers utilize these dorks in real-world reconnaissance.\n🔍 What is Google Dorking? Google Dorking involves using advanced search operators to uncover exposed files, login panels, debug pages, and misconfigured servers. It helps penetration testers, bug bounty hunters, and red teamers gather actionable intelligence.\n",
+  "keywords": [
+    "OSINT", "Reconnaissance", "Google Dorking", "Ethical Hacking"
+  ],
+  "articleBody": "Google Dorking (also known as Google Hacking) is a powerful method used in Open Source Intelligence (OSINT) to extract sensitive information from search engines using advanced search operators. As cybersecurity enthusiasts, especially in the RajkumaR CyberSec Blog, we explore how attackers and ethical hackers utilize these dorks in real-world reconnaissance.\n🔍 What is Google Dorking? Google Dorking involves using advanced search operators to uncover exposed files, login panels, debug pages, and misconfigured servers. It helps penetration testers, bug bounty hunters, and red teamers gather actionable intelligence.\n🧠 Why Use Google Dorking? ✅ Find Exposed Credentials ✅ Locate Hidden Login Portals ✅ Identify Sensitive Files \u0026 Directories ✅ Detect Error Pages \u0026 Misconfigurations ✅ Discover Internal APIs \u0026 Debug Data 📌 Dorking Techniques by RajkumaR 🔐 Data Leaks \u0026 Exposed Files site:target.com ext:pdf | ext:doc | ext:xls \"confidential\" OR \"password\" site:target.com intitle:\"index of\" \"private.key\" OR \".env\" Find documents or open directories containing sensitive information like passwords or secret environment files.\n🔓 Login Portals \u0026 Admin Panels site:target.com intitle:\"login\" OR \"admin\" OR \"dashboard\" site:target.com inurl:/admin/login.php Useful for detecting exposed login interfaces that could be brute-forced or exploited.\n🗂️ Open Directories \u0026 Sensitive Paths site:target.com intitle:\"index of\" \"/backup\" OR \"/database\" site:target.com inurl:/wp-content/uploads/ Unprotected directories often host backup files, configs, or media.\n⚠️ Vulnerable Services \u0026 Misconfigurations site:target.com intext:\"error occurred while processing\" site:target.com \"Apache/2.4.7 (Ubuntu) Server at\" These dorks expose error messages and server information that may hint at vulnerabilities.\n🧬 Exposed APIs \u0026 Debug Pages site:target.com inurl:/api/v1 intext:\"api_key\" site:target.com ext:php intext:\"phpinfo()\" Finds API endpoints and debug tools that may leak sensitive tokens or system info.\n🧑‍💼 Employee \u0026 Email Harvesting site:linkedin.com/in \"@target.com\" site:target.com \"@target.com\" -site:www.target.com Excellent for collecting emails and employee identities for phishing simulation or social engineering awareness.\n🌐 Subdomains \u0026 Cloud Services site:*target.com site:*.cloudfront.net | s3.amazonaws.com | azurewebsites.net target.com Reveal hidden subdomains or cloud-hosted assets linked to the organization.\n🛠️ GitHub \u0026 Code Repositories site:github.com \"target.com\" AND \"password\" site:gitlab.com \"target.com\" AND \"config\" Find leaked secrets or credentials within public source code repositories.\n✅ Summary By using Google Dorking techniques ethically and responsibly, cybersecurity professionals like RajkumaR can reveal potential security gaps and help secure web assets before attackers do.\n📚 References Google Hacking Database - Exploit-DB OWASP Google Hacking Project Stay curious, stay ethical, stay secure! 🔐🕵️‍♂️\n",
+  "wordCount" : "376",
+  "inLanguage": "en",
+  "datePublished": "2025-07-01T00:00:00Z",
+  "dateModified": "2025-07-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Rajkumar Kumawat"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost/posts/google-dorking/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "RajkumaR's CyberSec Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost/" accesskey="h" title="RajkumaR&#39;s CyberSec Blog (Alt + H)">RajkumaR&#39;s CyberSec Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Advanced Google Dorking for Target Reconnaissance
+    </h1>
+    <div class="post-meta"><span title='2025-07-01 00:00:00 +0000 UTC'>July 1, 2025</span>&nbsp;·&nbsp;Rajkumar Kumawat
+
+</div>
+  </header> 
+  <div class="post-content"><p><strong>Google Dorking</strong> (also known as <em>Google Hacking</em>) is a powerful method used in <strong>Open Source Intelligence (OSINT)</strong> to extract sensitive information from search engines using advanced search operators. As cybersecurity enthusiasts, especially in the RajkumaR CyberSec Blog, we explore how attackers and ethical hackers utilize these dorks in real-world reconnaissance.</p>
+<hr>
+<h2 id="-what-is-google-dorking">🔍 What is Google Dorking?<a hidden class="anchor" aria-hidden="true" href="#-what-is-google-dorking">#</a></h2>
+<p>Google Dorking involves using advanced search operators to uncover exposed files, login panels, debug pages, and misconfigured servers. It helps <strong>penetration testers</strong>, <strong>bug bounty hunters</strong>, and <strong>red teamers</strong> gather actionable intelligence.</p>
+<hr>
+<h2 id="-why-use-google-dorking">🧠 Why Use Google Dorking?<a hidden class="anchor" aria-hidden="true" href="#-why-use-google-dorking">#</a></h2>
+<ul>
+<li>✅ Find Exposed Credentials</li>
+<li>✅ Locate Hidden Login Portals</li>
+<li>✅ Identify Sensitive Files &amp; Directories</li>
+<li>✅ Detect Error Pages &amp; Misconfigurations</li>
+<li>✅ Discover Internal APIs &amp; Debug Data</li>
+</ul>
+<hr>
+<h2 id="-dorking-techniques-by-rajkumar">📌 Dorking Techniques by RajkumaR<a hidden class="anchor" aria-hidden="true" href="#-dorking-techniques-by-rajkumar">#</a></h2>
+<h3 id="-data-leaks--exposed-files">🔐 Data Leaks &amp; Exposed Files<a hidden class="anchor" aria-hidden="true" href="#-data-leaks--exposed-files">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>site:target.com ext:pdf | ext:doc | ext:xls <span style="color:#e6db74">&#34;confidential&#34;</span> OR <span style="color:#e6db74">&#34;password&#34;</span>
+</span></span><span style="display:flex;"><span>site:target.com intitle:<span style="color:#e6db74">&#34;index of&#34;</span> <span style="color:#e6db74">&#34;private.key&#34;</span> OR <span style="color:#e6db74">&#34;.env&#34;</span>
+</span></span></code></pre></div><p>Find documents or open directories containing sensitive information like passwords or secret environment files.</p>
+<hr>
+<h3 id="-login-portals--admin-panels">🔓 Login Portals &amp; Admin Panels<a hidden class="anchor" aria-hidden="true" href="#-login-portals--admin-panels">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>site:target.com intitle:<span style="color:#e6db74">&#34;login&#34;</span> OR <span style="color:#e6db74">&#34;admin&#34;</span> OR <span style="color:#e6db74">&#34;dashboard&#34;</span>
+</span></span><span style="display:flex;"><span>site:target.com inurl:/admin/login.php
+</span></span></code></pre></div><p>Useful for detecting exposed login interfaces that could be brute-forced or exploited.</p>
+<hr>
+<h3 id="-open-directories--sensitive-paths">🗂️ Open Directories &amp; Sensitive Paths<a hidden class="anchor" aria-hidden="true" href="#-open-directories--sensitive-paths">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>site:target.com intitle:<span style="color:#e6db74">&#34;index of&#34;</span> <span style="color:#e6db74">&#34;/backup&#34;</span> OR <span style="color:#e6db74">&#34;/database&#34;</span>
+</span></span><span style="display:flex;"><span>site:target.com inurl:/wp-content/uploads/
+</span></span></code></pre></div><p>Unprotected directories often host backup files, configs, or media.</p>
+<hr>
+<h3 id="-vulnerable-services--misconfigurations">⚠️ Vulnerable Services &amp; Misconfigurations<a hidden class="anchor" aria-hidden="true" href="#-vulnerable-services--misconfigurations">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>site:target.com intext:<span style="color:#e6db74">&#34;error occurred while processing&#34;</span>
+</span></span><span style="display:flex;"><span>site:target.com <span style="color:#e6db74">&#34;Apache/2.4.7 (Ubuntu) Server at&#34;</span>
+</span></span></code></pre></div><p>These dorks expose error messages and server information that may hint at vulnerabilities.</p>
+<hr>
+<h3 id="-exposed-apis--debug-pages">🧬 Exposed APIs &amp; Debug Pages<a hidden class="anchor" aria-hidden="true" href="#-exposed-apis--debug-pages">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>site:target.com inurl:/api/v1 intext:<span style="color:#e6db74">&#34;api_key&#34;</span>
+</span></span><span style="display:flex;"><span>site:target.com ext:php intext:<span style="color:#e6db74">&#34;phpinfo()&#34;</span>
+</span></span></code></pre></div><p>Finds API endpoints and debug tools that may leak sensitive tokens or system info.</p>
+<hr>
+<h3 id="-employee--email-harvesting">🧑‍💼 Employee &amp; Email Harvesting<a hidden class="anchor" aria-hidden="true" href="#-employee--email-harvesting">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>site:linkedin.com/in <span style="color:#e6db74">&#34;@target.com&#34;</span>
+</span></span><span style="display:flex;"><span>site:target.com <span style="color:#e6db74">&#34;@target.com&#34;</span> -site:www.target.com
+</span></span></code></pre></div><p>Excellent for collecting emails and employee identities for phishing simulation or social engineering awareness.</p>
+<hr>
+<h3 id="-subdomains--cloud-services">🌐 Subdomains &amp; Cloud Services<a hidden class="anchor" aria-hidden="true" href="#-subdomains--cloud-services">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>site:*target.com
+</span></span><span style="display:flex;"><span>site:*.cloudfront.net | s3.amazonaws.com | azurewebsites.net target.com
+</span></span></code></pre></div><p>Reveal hidden subdomains or cloud-hosted assets linked to the organization.</p>
+<hr>
+<h3 id="-github--code-repositories">🛠️ GitHub &amp; Code Repositories<a hidden class="anchor" aria-hidden="true" href="#-github--code-repositories">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>site:github.com <span style="color:#e6db74">&#34;target.com&#34;</span> AND <span style="color:#e6db74">&#34;password&#34;</span>
+</span></span><span style="display:flex;"><span>site:gitlab.com <span style="color:#e6db74">&#34;target.com&#34;</span> AND <span style="color:#e6db74">&#34;config&#34;</span>
+</span></span></code></pre></div><p>Find leaked secrets or credentials within public source code repositories.</p>
+<hr>
+<h2 id="-summary">✅ Summary<a hidden class="anchor" aria-hidden="true" href="#-summary">#</a></h2>
+<p>By using Google Dorking techniques ethically and responsibly, cybersecurity professionals like RajkumaR can reveal potential security gaps and help secure web assets before attackers do.</p>
+<hr>
+<h2 id="-references">📚 References<a hidden class="anchor" aria-hidden="true" href="#-references">#</a></h2>
+<ul>
+<li><a href="https://www.exploit-db.com/google-hacking-database">Google Hacking Database - Exploit-DB</a></li>
+<li><a href="https://owasp.org/www-community/Google_Hacking">OWASP Google Hacking Project</a></li>
+</ul>
+<hr>
+<p>Stay curious, stay ethical, stay secure! 🔐🕵️‍♂️</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost/tags/osint/">OSINT</a></li>
+      <li><a href="http://localhost/tags/reconnaissance/">Reconnaissance</a></li>
+      <li><a href="http://localhost/tags/google-dorking/">Google Dorking</a></li>
+      <li><a href="http://localhost/tags/ethical-hacking/">Ethical Hacking</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost/">RajkumaR&#39;s CyberSec Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

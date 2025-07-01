@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on RajkumaR&#39;s CyberSec Blog</title>
+    <link>http://localhost/tags/</link>
+    <description>Recent content in Tags on RajkumaR&#39;s CyberSec Blog</description>
+    <generator>Hugo -- 0.147.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ethical Hacking</title>
+      <link>http://localhost/tags/ethical-hacking/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost/tags/ethical-hacking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Google Dorking</title>
+      <link>http://localhost/tags/google-dorking/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost/tags/google-dorking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OSINT</title>
+      <link>http://localhost/tags/osint/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost/tags/osint/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reconnaissance</title>
+      <link>http://localhost/tags/reconnaissance/</link>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost/tags/reconnaissance/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
