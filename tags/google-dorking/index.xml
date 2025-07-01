@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Google Dorking on RajkumaR&#39;s CyberSec Blog</title>
-    <link>http://localhost/tags/google-dorking/</link>
+    <link>https://rjkumarkumawat.github.io/tags/google-dorking/</link>
     <description>Recent content in Google Dorking on RajkumaR&#39;s CyberSec Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost/tags/google-dorking/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://rjkumarkumawat.github.io/tags/google-dorking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Advanced Google Dorking for Target Reconnaissance</title>
-      <link>http://localhost/posts/google-dorking/</link>
+      <link>https://rjkumarkumawat.github.io/posts/google-dorking/</link>
       <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost/posts/google-dorking/</guid>
+      <guid>https://rjkumarkumawat.github.io/posts/google-dorking/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Google Dorking&lt;/strong&gt; (also known as &lt;em&gt;Google Hacking&lt;/em&gt;) is a powerful method used in &lt;strong&gt;Open Source Intelligence (OSINT)&lt;/strong&gt; to extract sensitive information from search engines using advanced search operators. As cybersecurity enthusiasts, especially in the RajkumaR CyberSec Blog, we explore how attackers and ethical hackers utilize these dorks in real-world reconnaissance.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;-what-is-google-dorking&#34;&gt;🔍 What is Google Dorking?&lt;/h2&gt;

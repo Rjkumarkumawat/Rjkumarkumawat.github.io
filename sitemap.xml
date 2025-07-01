@@ -2,37 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost/posts/google-dorking/</loc>
+    <loc>https://rjkumarkumawat.github.io/posts/google-dorking/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost/categories/</loc>
+    <loc>https://rjkumarkumawat.github.io/categories/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost/categories/cybersecurity/</loc>
+    <loc>https://rjkumarkumawat.github.io/categories/cybersecurity/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost/tags/ethical-hacking/</loc>
+    <loc>https://rjkumarkumawat.github.io/tags/ethical-hacking/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost/tags/google-dorking/</loc>
+    <loc>https://rjkumarkumawat.github.io/tags/google-dorking/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost/</loc>
+    <loc>https://rjkumarkumawat.github.io/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost/tags/osint/</loc>
+    <loc>https://rjkumarkumawat.github.io/tags/osint/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost/posts/</loc>
+    <loc>https://rjkumarkumawat.github.io/posts/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost/categories/reconnaissance/</loc>
+    <loc>https://rjkumarkumawat.github.io/categories/reconnaissance/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost/tags/reconnaissance/</loc>
+    <loc>https://rjkumarkumawat.github.io/tags/reconnaissance/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost/tags/</loc>
+    <loc>https://rjkumarkumawat.github.io/tags/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url>
 </urlset>
