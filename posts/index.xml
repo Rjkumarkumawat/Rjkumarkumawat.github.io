@@ -6,8 +6,25 @@
     <description>Recent content in Posts on RajkumaR&#39;s CyberSec Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://rjkumarkumawat.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🔍 YouTube OSINT: Extract Hidden Intel from Public Videos</title>
+      <link>https://rjkumarkumawat.github.io/posts/youtube-osint/</link>
+      <pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/posts/youtube-osint/</guid>
+      <description>&lt;h2 id=&#34;-why-youtube-is-an-osint-goldmine&#34;&gt;🌐 Why YouTube is an OSINT Goldmine&lt;/h2&gt;
+&lt;p&gt;YouTube videos often leak valuable data without organizations realizing it. By analyzing videos carefully, you can extract:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;🧑 Employee identities (via intros or ID cards)&lt;/li&gt;
+&lt;li&gt;🖥️ Internal systems or credentials visible on screens&lt;/li&gt;
+&lt;li&gt;🌍 Location data (GPS tags or visible environments)&lt;/li&gt;
+&lt;li&gt;🗂️ Metadata (upload date, location, camera info)&lt;/li&gt;
+&lt;li&gt;📽️ Deleted or private content (recovered via thumbnails or third-party sources)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Disclaimer&lt;/strong&gt;: This blog is for educational and ethical hacking purposes only. Always ensure you have permission when conducting OSINT investigations.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Advanced Google Dorking for Target Reconnaissance</title>
       <link>https://rjkumarkumawat.github.io/posts/google-dorking/</link>
@@ -17,29 +34,6 @@
 &lt;hr&gt;
 &lt;h2 id=&#34;-what-is-google-dorking&#34;&gt;🔍 What is Google Dorking?&lt;/h2&gt;
 &lt;p&gt;Google Dorking involves using advanced search operators to uncover exposed files, login panels, debug pages, and misconfigured servers. It helps &lt;strong&gt;penetration testers&lt;/strong&gt;, &lt;strong&gt;bug bounty hunters&lt;/strong&gt;, and &lt;strong&gt;red teamers&lt;/strong&gt; gather actionable intelligence.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>🔍 YouTube OSINT: Extract Hidden Intel from Public Videos</title>
-      <link>https://rjkumarkumawat.github.io/posts/youtube-osint/</link>
-      <pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://rjkumarkumawat.github.io/posts/youtube-osint/</guid>
-      <description>&lt;p&gt;&lt;img alt=&#34;YouTube OSINT Banner&#34; loading=&#34;lazy&#34; src=&#34;https://via.placeholder.com/1200x400/1e1e3f/20C20E?text=YouTube+OSINT+by+Rajkumar&#34;&gt;&lt;br&gt;
-&lt;em&gt;Pro Tip: Replace with your own banner using &lt;a href=&#34;https://canva.com&#34;&gt;Canva&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;-why-youtube-is-an-osint-goldmine&#34;&gt;🌐 Why YouTube is an OSINT Goldmine&lt;/h2&gt;
-&lt;p&gt;Public videos leak:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Employee identities (badges, name tags)&lt;/li&gt;
-&lt;li&gt;Internal tools (visible in screen shares)&lt;/li&gt;
-&lt;li&gt;Geolocation data (embedded in metadata)&lt;/li&gt;
-&lt;li&gt;Deleted content (via archives)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ &lt;strong&gt;Ethical Note&lt;/strong&gt;: Only analyze &lt;strong&gt;publicly available&lt;/strong&gt; videos of organizations you have permission to investigate.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;-step-by-step-technique&#34;&gt;🛠️ Step-by-Step Technique&lt;/h2&gt;
-&lt;h3 id=&#34;1-identify-target-channels&#34;&gt;1. Identify Target Channels&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-google&#34; data-lang=&#34;google&#34;&gt;site:youtube.com intitle:&amp;#34;TechCorp&amp;#34; OR &amp;#34;Tech Corp&amp;#34;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Found&lt;/strong&gt;:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
