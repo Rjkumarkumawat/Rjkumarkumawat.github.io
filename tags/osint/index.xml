@@ -6,8 +6,26 @@
     <description>Recent content in Osint on RajkumaR&#39;s CyberSec Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://rjkumarkumawat.github.io/tags/osint/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🔍 Mastering Photon: The Ultimate Web Scraping &amp; OSINT Tool for Ethical Hackers</title>
+      <link>https://rjkumarkumawat.github.io/posts/photon-osint-scanner/</link>
+      <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/posts/photon-osint-scanner/</guid>
+      <description>&lt;hr&gt;
+&lt;h2 id=&#34;-what-is-photon&#34;&gt;🌐 What is Photon?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Photon&lt;/strong&gt; is a lightning-fast, smart web crawler built specifically for OSINT tasks. It’s not just a URL scraper—it’s a powerful weapon for &lt;strong&gt;bug bounty hunters&lt;/strong&gt;, &lt;strong&gt;ethical hackers&lt;/strong&gt;, and &lt;strong&gt;red teamers&lt;/strong&gt; to extract:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ Emails &amp;amp; social links&lt;/li&gt;
+&lt;li&gt;✅ Endpoints &amp;amp; APIs&lt;/li&gt;
+&lt;li&gt;✅ JS files &amp;amp; secrets&lt;/li&gt;
+&lt;li&gt;✅ Hidden files (PDFs, ZIPs)&lt;/li&gt;
+&lt;li&gt;✅ Wayback Machine archives&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Always scan responsibly&lt;/strong&gt; — only target websites you own or have permission to test.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>🔍 YouTube OSINT: Extract Hidden Intel from Public Videos</title>
       <link>https://rjkumarkumawat.github.io/posts/youtube-osint/</link>

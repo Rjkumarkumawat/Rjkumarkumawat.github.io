@@ -2,22 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://rjkumarkumawat.github.io/posts/youtube-osint/</loc>
-    <lastmod>2025-07-02T00:00:00+00:00</lastmod>
+    <loc>https://rjkumarkumawat.github.io/posts/photon-osint-scanner/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/bugbounty/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/ethical-hacking/</loc>
-    <lastmod>2025-07-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/</loc>
-    <lastmod>2025-07-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/osint/</loc>
-    <lastmod>2025-07-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/photon/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/posts/</loc>
-    <lastmod>2025-07-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/web-recon/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/posts/youtube-osint/</loc>
     <lastmod>2025-07-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/youtube/</loc>
