@@ -2,28 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://rjkumarkumawat.github.io/categories/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/categories/cybersecurity/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/diagnostics/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/ethical-hacking/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/icmp/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/posts/mastering-ping/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/categories/network-analysis/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/network-security/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/posts/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/</loc>
+    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://rjkumarkumawat.github.io/posts/photon-osint-scanner/</loc>
     <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/bugbounty/</loc>
     <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rjkumarkumawat.github.io/tags/ethical-hacking/</loc>
-    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rjkumarkumawat.github.io/</loc>
-    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/osint/</loc>
     <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/photon/</loc>
-    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rjkumarkumawat.github.io/posts/</loc>
-    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rjkumarkumawat.github.io/tags/</loc>
     <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/web-recon/</loc>
@@ -36,12 +57,6 @@
     <lastmod>2025-07-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/posts/google-dorking/</loc>
-    <lastmod>2025-07-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rjkumarkumawat.github.io/categories/</loc>
-    <lastmod>2025-07-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rjkumarkumawat.github.io/categories/cybersecurity/</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/google-dorking/</loc>

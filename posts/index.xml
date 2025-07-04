@@ -6,8 +6,27 @@
     <description>Recent content in Posts on RajkumaR&#39;s CyberSec Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 03 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://rjkumarkumawat.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mastering Ping: The Network Reconnaissance Swiss Army Knife</title>
+      <link>https://rjkumarkumawat.github.io/posts/mastering-ping/</link>
+      <pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/posts/mastering-ping/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;The ping command&lt;/strong&gt; is the most fundamental yet powerful network diagnostic tool in any cybersecurity professional&amp;rsquo;s arsenal. this deceptively simple tool can reveal critical network intelligence when used with advanced techniques.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-what-is-ping&#34;&gt;🔍 What is Ping?&lt;/h2&gt;
+&lt;p&gt;Ping (Packet Internet Groper) uses &lt;strong&gt;ICMP Echo Requests&lt;/strong&gt; to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Verify host availability&lt;/li&gt;
+&lt;li&gt;Measure network latency&lt;/li&gt;
+&lt;li&gt;Detect packet loss&lt;/li&gt;
+&lt;li&gt;Map network paths&lt;/li&gt;
+&lt;li&gt;Identify firewall configurations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ℹ️ &lt;strong&gt;Protocol Note&lt;/strong&gt;: Ping operates at Layer 3 (Network Layer) using ICMP protocol, making it independent of higher-layer services.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>🔍 Mastering Photon: The Ultimate Web Scraping &amp; OSINT Tool for Ethical Hackers</title>
       <link>https://rjkumarkumawat.github.io/posts/photon-osint-scanner/</link>
