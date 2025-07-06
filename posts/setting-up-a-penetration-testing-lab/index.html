@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>🧪 Setting Up a Penetration Testing Lab using VirtualBox &#43; Kali Linux | RajkumaR&#39;s CyberSec Blog</title>
+<meta name="keywords" content="Pentesting, Cybersecurity Lab, Kali Linux, Metasploitable, VirtualBox">
+<meta name="description" content="Build your own penetration testing lab using VirtualBox, Kali Linux, and Metasploitable 2. Step-by-step tutorial with commands, diagrams, network isolation tips, and expert practices.">
+<meta name="author" content="">
+<link rel="canonical" href="https://rjkumarkumawat.github.io/posts/setting-up-a-penetration-testing-lab/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://rjkumarkumawat.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rjkumarkumawat.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rjkumarkumawat.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rjkumarkumawat.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rjkumarkumawat.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://rjkumarkumawat.github.io/posts/setting-up-a-penetration-testing-lab/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://rjkumarkumawat.github.io/posts/setting-up-a-penetration-testing-lab/">
+  <meta property="og:site_name" content="RajkumaR&#39;s CyberSec Blog">
+  <meta property="og:title" content="🧪 Setting Up a Penetration Testing Lab using VirtualBox &#43; Kali Linux">
+  <meta property="og:description" content="Build your own penetration testing lab using VirtualBox, Kali Linux, and Metasploitable 2. Step-by-step tutorial with commands, diagrams, network isolation tips, and expert practices.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-06T00:00:00+00:00">
+    <meta property="article:tag" content="Pentesting">
+    <meta property="article:tag" content="Cybersecurity Lab">
+    <meta property="article:tag" content="Kali Linux">
+    <meta property="article:tag" content="Metasploitable">
+    <meta property="article:tag" content="VirtualBox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🧪 Setting Up a Penetration Testing Lab using VirtualBox &#43; Kali Linux">
+<meta name="twitter:description" content="Build your own penetration testing lab using VirtualBox, Kali Linux, and Metasploitable 2. Step-by-step tutorial with commands, diagrams, network isolation tips, and expert practices.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://rjkumarkumawat.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "🧪 Setting Up a Penetration Testing Lab using VirtualBox + Kali Linux",
+      "item": "https://rjkumarkumawat.github.io/posts/setting-up-a-penetration-testing-lab/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "🧪 Setting Up a Penetration Testing Lab using VirtualBox + Kali Linux",
+  "name": "🧪 Setting Up a Penetration Testing Lab using VirtualBox \u002b Kali Linux",
+  "description": "Build your own penetration testing lab using VirtualBox, Kali Linux, and Metasploitable 2. Step-by-step tutorial with commands, diagrams, network isolation tips, and expert practices.",
+  "keywords": [
+    "Pentesting", "Cybersecurity Lab", "Kali Linux", "Metasploitable", "VirtualBox"
+  ],
+  "articleBody": " 🛡️ A penetration testing lab is a safe, isolated environment for ethical hackers to learn and test exploits without any risk to real networks or legal issues.\n🖥️ Step 1: Choose a Virtualization Platform Tool of Choice: Oracle VirtualBox\n✅ Free \u0026 open-source 💡 Works on Windows, Linux, macOS 🔁 Alternatives: VMware Workstation, Hyper-V, KVM 📦 Step 2: Download Required ISO / VM Files VM Role OS/Tool Download Link Attacker Kali Linux (Latest) kali.org Target (Vuln) Metasploitable 2 SourceForge Kali Linux Image Metasploitable Image 🧰 Step 3: Install Kali Linux (Attacker Machine) Open VirtualBox → New VM → Name: Kali Linux Type: Linux, Version: Debian (64-bit) Assign: RAM: 2 GB minimum Disk: 20 GB (Dynamically Allocated) Mount Kali ISO and boot. Follow GUI installation: Create user Choose mirror (optional) Partition and install After boot, update system: sudo apt update \u0026\u0026 sudo apt upgrade -y Install basic tools: sudo apt install net-tools curl vim git proxychains nmap 🎯 Step 4: Import Metasploitable 2 (Target Machine) Download .ova → VirtualBox → File → Import Appliance\nSet:\nRAM: 512 MB Network: Host-only Adapter (same as Kali) Boot \u0026 login:\nUsername: msfadmin Password: msfadmin 🌐 Step 5: Network Configuration Ensure both VMs are on the same Host-only Adapter:\nGo to Settings → Network:\nKali: Adapter 1 → Host-only Adapter → vboxnet0 Metasploitable: Same 🖥️ Verify Network: # On Kali ip a # Ping Metasploitable ping 192.168.56.102 Use ifconfig or ip a on both machines to get the IPs.\n📸 Step 6: Take Snapshots After installing each VM:\nGo to Snapshots in VirtualBox Click Take Snapshot Name it: Clean Install 📌 Snapshots allow you to revert VMs after running exploits or malware tests.\n🧷 Step 7: Guest Additions + Enhancements (Optional) Install Guest Additions on Kali:\nsudo apt install virtualbox-guest-x11 Enable Drag \u0026 Drop and Shared Clipboard:\nVM Settings → General → Advanced → Set both to Bidirectional 🗂️ Suggested Lab Folder Structure ~/Pentest-Lab/ ├── Notes/ ├── Reports/ ├── Payloads/ ├── Tools/ Clone helpful tools:\ngit clone https://github.com/carlospolop/PEASS-ng git clone https://github.com/rebootuser/LinEnum 🧠 Final Lab Topology Diagram +----------------------+ +------------------------+ | Kali Linux VM | \u003c-------\u003e | Metasploitable 2 VM | | (Attacker Toolkit) | Host-only | (Vulnerable Target) | | IP: 192.168.56.101 | Network | IP: 192.168.56.102 | +----------------------+ +------------------------+ ↕ VirtualBox Host (Your System) 🧠 Pro Tips \u0026 Blue Team Notes 🔒 Keep your lab offline: Use Host-only or Internal networks. 💥 Always snapshot before running malware or privilege escalation exploits. 🧑‍💻 Install useful enumeration tools early on. 🔁 Revert VMs after each pentest session for repeatability. ✅ Key Takeaways You now have a fully isolated lab with:\n✅ Kali Linux (attacker) ✅ Metasploitable 1 (target) This is your playground to practice:\nNmap scans Exploits via Metasploit Manual recon and enumeration 💬 Got questions or suggestions? Comment below or reach out on LinkedIn. Stay tuned for more ethical hacking labs!\n",
+  "wordCount" : "475",
+  "inLanguage": "en",
+  "datePublished": "2025-07-06T00:00:00Z",
+  "dateModified": "2025-07-06T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://rjkumarkumawat.github.io/posts/setting-up-a-penetration-testing-lab/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "RajkumaR's CyberSec Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rjkumarkumawat.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rjkumarkumawat.github.io/" accesskey="h" title="RajkumaR&#39;s CyberSec Blog (Alt + H)">RajkumaR&#39;s CyberSec Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      🧪 Setting Up a Penetration Testing Lab using VirtualBox &#43; Kali Linux
+    </h1>
+    <div class="post-description">
+      Build your own penetration testing lab using VirtualBox, Kali Linux, and Metasploitable 2. Step-by-step tutorial with commands, diagrams, network isolation tips, and expert practices.
+    </div>
+    <div class="post-meta"><span title='2025-07-06 00:00:00 +0000 UTC'>July 6, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>🛡️ A penetration testing lab is a <strong>safe, isolated environment</strong> for ethical hackers to learn and test exploits without any risk to real networks or legal issues.</p></blockquote>
+<hr>
+<h2 id="-step-1-choose-a-virtualization-platform">🖥️ Step 1: Choose a Virtualization Platform<a hidden class="anchor" aria-hidden="true" href="#-step-1-choose-a-virtualization-platform">#</a></h2>
+<p><strong>Tool of Choice</strong>: <a href="https://www.virtualbox.org">Oracle VirtualBox</a></p>
+<ul>
+<li>✅ Free &amp; open-source</li>
+<li>💡 Works on Windows, Linux, macOS</li>
+<li>🔁 Alternatives: VMware Workstation, Hyper-V, KVM</li>
+</ul>
+<hr>
+<h2 id="-step-2-download-required-iso--vm-files">📦 Step 2: Download Required ISO / VM Files<a hidden class="anchor" aria-hidden="true" href="#-step-2-download-required-iso--vm-files">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>VM Role</th>
+          <th>OS/Tool</th>
+          <th>Download Link</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Attacker</td>
+          <td>Kali Linux (Latest)</td>
+          <td><a href="https://www.kali.org/get-kali/#kali-virtual-machines">kali.org</a></td>
+      </tr>
+      <tr>
+          <td>Target (Vuln)</td>
+          <td>Metasploitable 2</td>
+          <td><a href="https://sourceforge.net/projects/metasploitable/">SourceForge</a></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<figure>
+    <img loading="lazy" src="kali_image.png"/> <figcaption>
+            Kali Linux Image
+        </figcaption>
+</figure>
+
+<figure>
+    <img loading="lazy" src="metas.png"/> <figcaption>
+            Metasploitable Image
+        </figcaption>
+</figure>
+
+<h2 id="-step-3-install-kali-linux-attacker-machine">🧰 Step 3: Install Kali Linux (Attacker Machine)<a hidden class="anchor" aria-hidden="true" href="#-step-3-install-kali-linux-attacker-machine">#</a></h2>
+<ol>
+<li>Open VirtualBox → <code>New VM</code> → Name: <strong>Kali Linux</strong></li>
+<li>Type: <code>Linux</code>, Version: <code>Debian (64-bit)</code></li>
+<li>Assign:
+<ul>
+<li><strong>RAM</strong>: 2 GB minimum</li>
+<li><strong>Disk</strong>: 20 GB (Dynamically Allocated)</li>
+</ul>
+</li>
+<li>Mount Kali ISO and boot.</li>
+<li>Follow GUI installation:
+<ul>
+<li>Create user</li>
+<li>Choose mirror (optional)</li>
+<li>Partition and install</li>
+</ul>
+</li>
+<li>After boot, update system:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update <span style="color:#f92672">&amp;&amp;</span> sudo apt upgrade -y
+</span></span></code></pre></div><ol start="7">
+<li>Install basic tools:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install net-tools curl vim git proxychains nmap
+</span></span></code></pre></div><hr>
+<h2 id="-step-4-import-metasploitable-2-target-machine">🎯 Step 4: Import Metasploitable 2 (Target Machine)<a hidden class="anchor" aria-hidden="true" href="#-step-4-import-metasploitable-2-target-machine">#</a></h2>
+<ol>
+<li>
+<p>Download <code>.ova</code> → VirtualBox → <code>File</code> → <code>Import Appliance</code></p>
+</li>
+<li>
+<p>Set:</p>
+<ul>
+<li><strong>RAM</strong>: 512 MB</li>
+<li><strong>Network</strong>: Host-only Adapter (same as Kali)</li>
+</ul>
+</li>
+<li>
+<p>Boot &amp; login:</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Username: msfadmin
+</span></span><span style="display:flex;"><span>Password: msfadmin
+</span></span></code></pre></div><hr>
+<h2 id="-step-5-network-configuration">🌐 Step 5: Network Configuration<a hidden class="anchor" aria-hidden="true" href="#-step-5-network-configuration">#</a></h2>
+<p>Ensure both VMs are on the same <strong>Host-only Adapter</strong>:</p>
+<ul>
+<li>
+<p>Go to Settings → Network:</p>
+<ul>
+<li>Kali: Adapter 1 → Host-only Adapter → vboxnet0</li>
+<li>Metasploitable: Same</li>
+</ul>
+</li>
+</ul>
+<h3 id="-verify-network">🖥️ Verify Network:<a hidden class="anchor" aria-hidden="true" href="#-verify-network">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># On Kali</span>
+</span></span><span style="display:flex;"><span>ip a
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ping Metasploitable</span>
+</span></span><span style="display:flex;"><span>ping 192.168.56.102
+</span></span></code></pre></div><blockquote>
+<p>Use <code>ifconfig</code> or <code>ip a</code> on both machines to get the IPs.</p></blockquote>
+<hr>
+<h2 id="-step-6-take-snapshots">📸 Step 6: Take Snapshots<a hidden class="anchor" aria-hidden="true" href="#-step-6-take-snapshots">#</a></h2>
+<p>After installing each VM:</p>
+<ol>
+<li>Go to <code>Snapshots</code> in VirtualBox</li>
+<li>Click <code>Take Snapshot</code></li>
+<li>Name it: <code>Clean Install</code></li>
+</ol>
+<blockquote>
+<p>📌 Snapshots allow you to revert VMs after running exploits or malware tests.</p></blockquote>
+<hr>
+<h2 id="-step-7-guest-additions--enhancements-optional">🧷 Step 7: Guest Additions + Enhancements (Optional)<a hidden class="anchor" aria-hidden="true" href="#-step-7-guest-additions--enhancements-optional">#</a></h2>
+<p>Install Guest Additions on Kali:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install virtualbox-guest-x11
+</span></span></code></pre></div><p>Enable Drag &amp; Drop and Shared Clipboard:</p>
+<ul>
+<li>VM Settings → General → Advanced → Set both to <code>Bidirectional</code></li>
+</ul>
+<hr>
+<h2 id="-suggested-lab-folder-structure">🗂️ Suggested Lab Folder Structure<a hidden class="anchor" aria-hidden="true" href="#-suggested-lab-folder-structure">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/Pentest-Lab/
+</span></span><span style="display:flex;"><span>├── Notes/
+</span></span><span style="display:flex;"><span>├── Reports/
+</span></span><span style="display:flex;"><span>├── Payloads/
+</span></span><span style="display:flex;"><span>├── Tools/
+</span></span></code></pre></div><p>Clone helpful tools:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/carlospolop/PEASS-ng
+</span></span><span style="display:flex;"><span>git clone https://github.com/rebootuser/LinEnum
+</span></span></code></pre></div><hr>
+<h2 id="-final-lab-topology-diagram">🧠 Final Lab Topology Diagram<a hidden class="anchor" aria-hidden="true" href="#-final-lab-topology-diagram">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>+----------------------+           +------------------------+
+</span></span><span style="display:flex;"><span>|     Kali Linux VM    | &lt;-------&gt; |  Metasploitable 2 VM   |
+</span></span><span style="display:flex;"><span>|  (Attacker Toolkit)  | Host-only |  (Vulnerable Target)   |
+</span></span><span style="display:flex;"><span>| IP: 192.168.56.101   | Network   | IP: 192.168.56.102     |
+</span></span><span style="display:flex;"><span>+----------------------+           +------------------------+
+</span></span><span style="display:flex;"><span>              ↕
+</span></span><span style="display:flex;"><span>        VirtualBox Host
+</span></span><span style="display:flex;"><span>          (Your System)
+</span></span></code></pre></div><hr>
+<h2 id="-pro-tips--blue-team-notes">🧠 Pro Tips &amp; Blue Team Notes<a hidden class="anchor" aria-hidden="true" href="#-pro-tips--blue-team-notes">#</a></h2>
+<ul>
+<li>🔒 <strong>Keep your lab offline</strong>: Use <em>Host-only</em> or <em>Internal</em> networks.</li>
+<li>💥 Always snapshot before running malware or privilege escalation exploits.</li>
+<li>🧑‍💻 Install useful enumeration tools early on.</li>
+<li>🔁 Revert VMs after each pentest session for repeatability.</li>
+</ul>
+<hr>
+<h2 id="-key-takeaways">✅ Key Takeaways<a hidden class="anchor" aria-hidden="true" href="#-key-takeaways">#</a></h2>
+<ul>
+<li>
+<p>You now have a <strong>fully isolated lab</strong> with:</p>
+<ul>
+<li>✅ Kali Linux (attacker)</li>
+<li>✅ Metasploitable 1 (target)</li>
+</ul>
+</li>
+<li>
+<p>This is your playground to practice:</p>
+<ul>
+<li>Nmap scans</li>
+<li>Exploits via Metasploit</li>
+<li>Manual recon and enumeration</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>💬 <strong>Got questions or suggestions?</strong> Comment below or reach out on <a href="https://www.linkedin.com/in/rajkumar-kumawat-66072b199">LinkedIn</a>. Stay tuned for more ethical hacking labs!</p></blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://rjkumarkumawat.github.io/tags/pentesting/">Pentesting</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/cybersecurity-lab/">Cybersecurity Lab</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/kali-linux/">Kali Linux</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/metasploitable/">Metasploitable</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/virtualbox/">VirtualBox</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://rjkumarkumawat.github.io/">RajkumaR&#39;s CyberSec Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -2,6 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://rjkumarkumawat.github.io/categories/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/cybersecurity-lab/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/categories/ethical-hacking/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/kali-linux/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/metasploitable/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/pentesting/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/posts/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/tags/virtualbox/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rjkumarkumawat.github.io/posts/setting-up-a-penetration-testing-lab/</loc>
+    <lastmod>2025-07-06T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://rjkumarkumawat.github.io/posts/recon-ng-osint-guide/</loc>
     <lastmod>2025-07-05T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,13 +44,7 @@
     <loc>https://rjkumarkumawat.github.io/tags/cybersecurity/</loc>
     <lastmod>2025-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rjkumarkumawat.github.io/</loc>
-    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/osint/</loc>
-    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rjkumarkumawat.github.io/posts/</loc>
     <lastmod>2025-07-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/recon/</loc>
@@ -28,12 +55,6 @@
   </url><url>
     <loc>https://rjkumarkumawat.github.io/tags/red-teaming/</loc>
     <lastmod>2025-07-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rjkumarkumawat.github.io/tags/</loc>
-    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rjkumarkumawat.github.io/categories/</loc>
-    <lastmod>2025-07-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rjkumarkumawat.github.io/categories/cybersecurity/</loc>
     <lastmod>2025-07-04T00:00:00+00:00</lastmod>
