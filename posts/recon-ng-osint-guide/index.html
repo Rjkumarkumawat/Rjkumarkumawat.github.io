@@ -117,8 +117,8 @@ It mimics the Metasploit interface, offering powerful modules to collect intel l
   "keywords": [
     "osint", "recon", "recon-ng", "red-teaming", "bug-bounty", "cybersecurity"
   ],
-  "articleBody": " 🚀 Learn how to use Recon-ng from scratch to expert level with real-world examples, commands, API tips, and professional automation workflows.\n🧠 What is Recon-ng? Recon-ng is an open-source OSINT (Open Source Intelligence) framework written in Python that helps security researchers, red teamers, and bug bounty hunters automate reconnaissance tasks.\nIt mimics the Metasploit interface, offering powerful modules to collect intel like domains, hosts, credentials, social profiles, leaked data, and more — all in an automated, database-backed workspace.\n🎯 Key Features of Recon-ng 🔧 Feature 🧠 Description 🧩 Modular Design 100+ modules: domains, hosts, ports, emails, creds, companies, social, etc. 🗂️ Workspaces Isolated environments for different recon jobs 🔑 API Key Integration Supports Google, Shodan, Censys, GitHub, Hunter.io, etc. 📄 Reporting Export as CSV, JSON, HTML for documentation 🧠 Automatic DB Storage Stores all data inside a local SQLite DB 🤖 Automation Support Command-line scripting, chaining, and integration with other tools 📦 Built-in Commands Like use, run, set, show, search, export, keys, etc. 💼 Real-World Use Cases Use Case Description ✅ Red Team OSINT Recon Identify subdomains, emails, and open ports to prepare attack surface map 🧑‍💻 Bug Bounty Hunting Discover hidden assets and exposed credentials from public sources 🛡️ Blue Team Intel Detect leaked internal data and exposed public infrastructure 📊 Reporting Auto-export reconnaissance findings for documentation or client reports 🧰 Installation on Ubuntu/Kali # Update system sudo apt update \u0026\u0026 sudo apt upgrade -y # Install dependencies sudo apt install python3 python3-pip git -y # Clone Recon-ng repository git clone https://github.com/lanmaster53/recon-ng.git # Navigate into directory cd recon-ng # Install Python dependencies pip3 install -r REQUIREMENTS ✅ Run the Framework python3 recon-ng 📤 Output:\n[recon-ng][default] \u003e 🛠️ Getting Started with Recon-ng 🗂️ Step 1: Create a Workspace workspaces create testlab 📤\n[+] Workspace 'testlab' created. 🌍 Step 2: Add Target Domain add domains example.com 📤\n[+] Added: example.com 🔍 Step 3: Search Modules search domains-hosts 📤 Output:\nModule Path Description ------------------------------------- ---------------------------------------------- recon/domains-hosts/bing_domain_web Harvest hosts using Bing recon/domains-hosts/crtsh Find subdomains from public certs recon/domains-hosts/brute_hosts Brute force subdomains ⚙️ Step 4: Use a Module \u0026 Run It use recon/domains-hosts/crtsh set SOURCE example.com run 📤\n[*] Searching crt.sh for example.com... [+] Found: dev.example.com [+] Found: blog.example.com 🔎 Step 5: View Results show hosts 📤\n+-------------------+-----------+ | host | ip_address| +-------------------+-----------+ | dev.example.com | | | blog.example.com | | +-------------------+-----------+ 🌐 Step 6: Resolve Hostnames use recon/hosts-hosts/resolve run 📤\n[+] dev.example.com -\u003e 192.168.1.12 [+] blog.example.com -\u003e 192.168.1.13 show hosts 🔑 Step 7: Add API Keys keys add shodan_api YOUR_SHODAN_API_KEY keys add hunterio_api YOUR_HUNTER_API_KEY keys list 🧪 Step 8: Collect Ports via Shodan use recon/hosts-ports/shodan_hostname run 📤\n[+] dev.example.com - Port 22 [+] blog.example.com - Ports 80, 443 📧 Step 9: Find Emails via Hunter.io use recon/domains-contacts/hunter_io set SOURCE example.com run show contacts 📤\n+----------------------+-------------------------+ | first_name | email | +----------------------+-------------------------+ | John | john@example.com | | Jane | jane@example.com | +----------------------+-------------------------+ 📤 Step 10: Export Report export csv /home/rajkumar/recon-output.csv 📤\n[+] Exported data to recon-output.csv ⚡ Expert Tips for Recon-ng 🧠 Use search often to discover relevant modules quickly. 🗂️ Use notes add to keep case notes per workspace. 🔁 Combine modules: crtsh → resolve → shodan_hostname → export. 💡 Integrate Recon-ng with Bash or Python for automated recon. 🔒 Never forget to add valid API keys for premium modules. 💬 You can script module runs using the .recon-ngrc file for automation. 🎯 Sample Recon Chain (Red Team Example) workspaces create redteam add domains acme-corp.com use recon/domains-hosts/crtsh set SOURCE acme-corp.com run use recon/hosts-hosts/resolve run use recon/hosts-ports/shodan_hostname run export csv ~/acme-recon.csv 📤 Output CSV:\nhost, ip, ports, service dev.acme-corp.com, 192.0.2.1, 80, http api.acme-corp.com, 192.0.2.2, 443, https 🔥 Newly Added Sections (Beyond Standard Guides) 1. Advanced Module Chaining for Threat Hunting # Example: Full domain takeover recon workflow workspaces create takeover_scan use recon/domains-hosts/crtsh set SOURCE example.com run use recon/domains-hosts/ssl_common run use recon/hosts-hosts/resolve run use recon/hosts-ports/shodan_hostname keys add shodan_api YOUR_KEY run use reporting/html_report set FILENAME /tmp/takeover_audit.html run 2. API Key Optimization Critical APIs to Integrate:\nShodan (host/port intelligence) Hunter.io (email pattern discovery) GitHub (credential leaks) Censys (SSL/TLS analysis) SecurityTrails (historical DNS) Pro Tip: Store keys encrypted using:\nkeys add --encrypt hunter_api YOUR_KEY 3. Custom Module Development File Structure:\n~/.recon-ng/modules/custom/ └── my_custom_module.py Template:\nfrom recon.core.module import BaseModule class Module(BaseModule): meta = { 'name': 'Custom Domain Scraper', 'author': 'Your Name', 'description': 'Fetches subdomains from internal DB', 'query': 'SELECT DISTINCT domain FROM domains WHERE domain LIKE \"%example%\"', } def module_run(self, domains): for domain in domains: self.alert(f\"Checking {domain}...\") # Your logic here self.add_hosts(host=ip, hostname=domain) 4. Defensive Countermeasures Blue Team Use Cases:\nMonitor for your organization’s data leaks: use recon/companies-credentials/github_company set SOURCE \"YourCompany\" run Automate dark web monitoring: use recon/creds-credentials/pastebin_search set QUERY \"yourcompany.com password\" run 5. Cloud Recon Tactics AWS Bucket Discovery:\nuse recon/domains-hosts/aws_brute set SOURCE example.com set WORDLIST /path/to/bucket_words.txt run Azure Blob Scanning:\nuse recon/domains-hosts/azure_brute set METHOD METADATA # Checks for open listing run 6. Mobile App Recon use recon/domains-hosts/apptweak set STORE google_play # or app_store set APP_ID com.example.app run 7. Bypassing Anti-OSINT Defenses Rotating User-Agents: self.agent = random.choice(self.user_agents) Tor Integration: pip3 install stem export SOCKS_PROXY=socks5://127.0.0.1:9050 Delay Configuration: set DELAY 5 # seconds between requests 8. SIEM Integration Elasticsearch Example:\nuse reporting/elasticsearch set HOST 192.168.1.100 set INDEX recon-ng-scans run 9. Maltego Transform Server from maltego_trx.maltego import MaltegoMsg from maltego_trx.transform import DiscoverableTransform class ReconNGTransform(DiscoverableTransform): @classmethod def create_entities(cls, request: MaltegoMsg, response): domain = request.Value # Call Recon-ng modules via API response.addEntity(\"maltego.Domain\", domain) 10. Performance Tuning # In ~/.recon-ng/config [performance] threads = 25 timeout = 10 retries = 2 🛠️ Advanced Troubleshooting Debugging Module Failures set DEBUG True # Before running module Network Capture Analysis tcpdump -i eth0 -w recon-ng.pcap # Filter later with: tshark -r recon-ng.pcap -Y \"http.request or dns\" 🧩 Module Deep Dives 1. Certificate Transparency Logs use recon/domains-hosts/certspotter set SOURCE example.com set LIMIT 500 # Increase for large orgs run 2. Email Pattern Analysis use recon/domains-contacts/hunter_verify set DOMAIN example.com set FIRST \"John\" # CEO name from LinkedIn run 3. Cloud Metadata Harvesting use recon/hosts-hosts/cloud_metadata set TARGET 169.254.169.254 # AWS/Azure/GCP IP run 📊 Data Correlation Techniques # After multiple modules: use reporting/correlation_engine set ENTITY_TYPE hosts set CONFIDENCE 80 # Filter low-quality matches run 🎯 Red Team Kill Chain Integration Phase Recon-ng Modules Recon domains-hosts, companies-people Weaponization creds-credentials/pastebin_search Delivery domains-contacts/hunter_io (for phishing) Exploitation hosts-ports/shodan_hostname (vuln check) 📆 Maintenance \u0026 Updates # Weekly update routine cd ~/recon-ng git pull pip3 install -r REQUIREMENTS --upgrade python3 recon-cli -M # Check module updates 💼 Professional Services Integration 1. Automated Client Reporting use reporting/jinja2_template set TEMPLATE /templates/client_report.html.j2 set OUTPUT /deliverables/client_2025.html run 2. PCI DSS Compliance Scanning workspaces create pci_audit use recon/domains-hosts/pci_scope set SOURCE \"*.company.com\" run 📜 Final Pro Tips from BlackHat Practitioners Operational Security:\nAlways run show keys before engagements to avoid accidental API leaks Use workspaces purge after sensitive operations Data Enrichment:\nuse recon/hosts-hosts/virustotal set APIKEY YOUR_KEY set RESOLVE True # Cross-check IPs run Time-saving Aliases:\nalias recon-start='cd ~/recon-ng \u0026\u0026 python3 recon-ng -w $1' 🏁 Final Thoughts Recon-ng is a must-learn tool for every OSINT analyst, red teamer, and bug bounty hunter. Once mastered, it saves hours of recon effort while giving deep insights into target infrastructure, emails, and vulnerabilities.\n🔗 Resources Recon-ng GitHub Repo API Keys Setup Guide OSINT Cheatsheet 🙌 Share Your Feedback! If this guide helped you, share it with your OSINT friends or drop a ❤️ on LinkedIn.\n",
-  "wordCount" : "1208",
+  "articleBody": " 🚀 Learn how to use Recon-ng from scratch to expert level with real-world examples, commands, API tips, and professional automation workflows.\n🧠 What is Recon-ng? Recon-ng is an open-source OSINT (Open Source Intelligence) framework written in Python that helps security researchers, red teamers, and bug bounty hunters automate reconnaissance tasks.\nIt mimics the Metasploit interface, offering powerful modules to collect intel like domains, hosts, credentials, social profiles, leaked data, and more — all in an automated, database-backed workspace.\n🎯 Key Features of Recon-ng 🔧 Feature 🧠 Description 🧩 Modular Design 100+ modules: domains, hosts, ports, emails, creds, companies, social, etc. 🗂️ Workspaces Isolated environments for different recon jobs 🔑 API Key Integration Supports Google, Shodan, Censys, GitHub, Hunter.io, etc. 📄 Reporting Export as CSV, JSON, HTML for documentation 🧠 Automatic DB Storage Stores all data inside a local SQLite DB 🤖 Automation Support Command-line scripting, chaining, and integration with other tools 📦 Built-in Commands Like use, run, set, show, search, export, keys, etc. 🧠 Mastering Recon-ng V5 – Complete OSINT Automation Framework Guide 🎥 Reference Playlist: HackerSploit Recon-ng V5 Full Series\n⚙️ Installation Kali Linux (Preinstalled) recon-ng Ubuntu/Debian git clone https://github.com/lanmaster53/recon-ng.git cd recon-ng pip3 install -r REQUIREMENTS ./recon-ng 🚦 Getting Started: CLI Help Reference Once inside the CLI, run:\n[recon-ng][default] \u003e help 🧭 Recon-ng Command List: Command Description back Exit current context/module dashboard View a summary of your workspace and modules used db Interface with the workspace database exit Exit the framework help Show help menu index Developer-only module indexing keys Add/view/delete API keys for third-party services marketplace Install/search available modules modules List, load, and manage modules options Set and unset module-specific options pdb Python Debugger (developer tool) script Record and play scripted sessions shell Run system shell commands show Show internal objects (hosts, domains, etc.) snapshots Manage workspace snapshots spool Save output to a file workspaces Create/switch/delete isolated project spaces 🗂️ Workspace \u0026 Snapshot Setup Create a workspace workspaces create acme_corp workspaces list workspaces load acme_corp Take a snapshot before running scans snapshots take pre-scan 🔐 API Key Configuration Many modules require API keys (Shodan, BinaryEdge, Bing, etc.)\nAdd API Key keys add shodan_api YOUR_SHODAN_KEY List all keys keys list 🧩 Module Marketplace Search modules marketplace search whois Install a module marketplace install recon/domains-hosts/whois_pocs Load module modules load recon/domains-hosts/whois_pocs Set required options options set SOURCE example.com Run module run 🧱 Database Commands Recon-ng stores all output in a local SQLite database.\nView status of tables db status Query a table db query hosts Insert manually db insert hosts hostname=example.com ip_address=1.2.3.4 source=manual Export table to CSV db export hosts 📊 Real CLI Example Output [recon-ng][acme_corp] \u003e db query hosts +----+-------------------+-------------+---------+ | id | hostname | ip_address | source | +----+-------------------+-------------+---------+ | 1 | test.acme.com | 104.26.10.3 | bing | | 2 | mail.acme.com | 104.26.11.3 | bing | +----+-------------------+-------------+---------+ 🏢 Real-World Use Case (Industrial Red Team) 🎯 Scenario: A cybersecurity consultant is hired by a large enterprise to assess their external exposure (no internal access). They use Recon-ng as part of the initial recon phase.\n🔄 Workflow: Create a workspace:\nworkspaces create client_enterprise Run domain reconnaissance:\nmodules load recon/domains-hosts/bing options set SOURCE client.com run Harvest emails:\nmodules load recon/contacts-credentials/theharvester options set SOURCE client.com run Discover IPs and Ports using Shodan:\nmodules load recon/hosts-hosts/shodan_hostname keys add shodan_api API_KEY options set SOURCE client.com run Export results to CSV for reporting:\ndb export hosts db export contacts Record session for audit:\nscript record session1.rec # (run modules) script stop Present findings to client in report format.\n🛡️ Blue Team Use Case SOC team uses Recon-ng to monitor brand exposure and typosquatted domains weekly. Uses automated scripts to spool outputs and alerts when new external assets appear. Integration with email alerting via cronjobs and recon-ng’s scripting mode. 📎 Pro Tips Tip Details 🔁 Reuse scripts Record common recon workflows with script record and automate repeat assessments. 📂 Use workspaces Never mix multiple engagements. Keep targets isolated. 🔐 Add API keys Modules like Shodan, Censys, and Bing require keys. 📜 Spool outputs Log everything for compliance using spool start. 📡 Combine with Maltego Export CSV and visualize graphically. 🧪 Practice Lab Task Try this on your own:\nworkspaces create testlab marketplace install recon/domains-hosts/bing modules load recon/domains-hosts/bing options set SOURCE tesla.com run db export hosts Expected Output:\nA list of subdomains Their IPs Saved in hosts.csv 📆 Maintenance \u0026 Updates # Weekly update routine cd ~/recon-ng git pull pip3 install -r REQUIREMENTS --upgrade python3 recon-cli -M # Check module updates 🏁 Final Thoughts Recon-ng is a must-learn tool for every OSINT analyst, red teamer, and bug bounty hunter. Once mastered, it saves hours of recon effort while giving deep insights into target infrastructure, emails, and vulnerabilities.\n🔗 Resources Recon-ng GitHub Repo API Keys Setup Guide OSINT Cheatsheet 🙌 Share Your Feedback! If this guide helped you, share it with your OSINT friends or drop a ❤️ on LinkedIn.\n",
+  "wordCount" : "812",
   "inLanguage": "en",
   "datePublished": "2025-07-05T00:00:00Z",
   "dateModified": "2025-07-05T00:00:00Z",
@@ -240,365 +240,252 @@ It mimics the Metasploit interface, offering powerful modules to collect intel l
   </tbody>
 </table>
 <hr>
-<h2 id="-real-world-use-cases">💼 Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#-real-world-use-cases">#</a></h2>
+<h1 id="-mastering-recon-ng-v5--complete-osint-automation-framework-guide">🧠 Mastering Recon-ng V5 – Complete OSINT Automation Framework Guide<a hidden class="anchor" aria-hidden="true" href="#-mastering-recon-ng-v5--complete-osint-automation-framework-guide">#</a></h1>
+<p><strong>🎥 Reference Playlist:</strong> <a href="https://www.youtube.com/playlist?list=PLBf0hzazHTGOg9taK90uFjdcb8UgGfRKZ">HackerSploit Recon-ng V5 Full Series</a></p>
+<h2 id="-installation">⚙️ Installation<a hidden class="anchor" aria-hidden="true" href="#-installation">#</a></h2>
+<h3 id="kali-linux-preinstalled">Kali Linux (Preinstalled)<a hidden class="anchor" aria-hidden="true" href="#kali-linux-preinstalled">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>recon-ng
+</span></span></code></pre></div><h3 id="ubuntudebian">Ubuntu/Debian<a hidden class="anchor" aria-hidden="true" href="#ubuntudebian">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/lanmaster53/recon-ng.git
+</span></span><span style="display:flex;"><span>cd recon-ng
+</span></span><span style="display:flex;"><span>pip3 install -r REQUIREMENTS
+</span></span><span style="display:flex;"><span>./recon-ng
+</span></span></code></pre></div><hr>
+<h2 id="-getting-started-cli-help-reference">🚦 Getting Started: CLI Help Reference<a hidden class="anchor" aria-hidden="true" href="#-getting-started-cli-help-reference">#</a></h2>
+<p>Once inside the CLI, run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>recon-ng<span style="color:#f92672">][</span>default<span style="color:#f92672">]</span> &gt; help
+</span></span></code></pre></div><h3 id="-recon-ng-command-list">🧭 Recon-ng Command List:<a hidden class="anchor" aria-hidden="true" href="#-recon-ng-command-list">#</a></h3>
 <table>
   <thead>
       <tr>
-          <th>Use Case</th>
+          <th>Command</th>
           <th>Description</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>✅ Red Team OSINT Recon</td>
-          <td>Identify subdomains, emails, and open ports to prepare attack surface map</td>
+          <td><code>back</code></td>
+          <td>Exit current context/module</td>
       </tr>
       <tr>
-          <td>🧑‍💻 Bug Bounty Hunting</td>
-          <td>Discover hidden assets and exposed credentials from public sources</td>
+          <td><code>dashboard</code></td>
+          <td>View a summary of your workspace and modules used</td>
       </tr>
       <tr>
-          <td>🛡️ Blue Team Intel</td>
-          <td>Detect leaked internal data and exposed public infrastructure</td>
+          <td><code>db</code></td>
+          <td>Interface with the workspace database</td>
       </tr>
       <tr>
-          <td>📊 Reporting</td>
-          <td>Auto-export reconnaissance findings for documentation or client reports</td>
+          <td><code>exit</code></td>
+          <td>Exit the framework</td>
+      </tr>
+      <tr>
+          <td><code>help</code></td>
+          <td>Show help menu</td>
+      </tr>
+      <tr>
+          <td><code>index</code></td>
+          <td>Developer-only module indexing</td>
+      </tr>
+      <tr>
+          <td><code>keys</code></td>
+          <td>Add/view/delete API keys for third-party services</td>
+      </tr>
+      <tr>
+          <td><code>marketplace</code></td>
+          <td>Install/search available modules</td>
+      </tr>
+      <tr>
+          <td><code>modules</code></td>
+          <td>List, load, and manage modules</td>
+      </tr>
+      <tr>
+          <td><code>options</code></td>
+          <td>Set and unset module-specific options</td>
+      </tr>
+      <tr>
+          <td><code>pdb</code></td>
+          <td>Python Debugger (developer tool)</td>
+      </tr>
+      <tr>
+          <td><code>script</code></td>
+          <td>Record and play scripted sessions</td>
+      </tr>
+      <tr>
+          <td><code>shell</code></td>
+          <td>Run system shell commands</td>
+      </tr>
+      <tr>
+          <td><code>show</code></td>
+          <td>Show internal objects (hosts, domains, etc.)</td>
+      </tr>
+      <tr>
+          <td><code>snapshots</code></td>
+          <td>Manage workspace snapshots</td>
+      </tr>
+      <tr>
+          <td><code>spool</code></td>
+          <td>Save output to a file</td>
+      </tr>
+      <tr>
+          <td><code>workspaces</code></td>
+          <td>Create/switch/delete isolated project spaces</td>
       </tr>
   </tbody>
 </table>
 <hr>
-<h2 id="-installation-on-ubuntukali">🧰 Installation on Ubuntu/Kali<a hidden class="anchor" aria-hidden="true" href="#-installation-on-ubuntukali">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Update system</span>
-</span></span><span style="display:flex;"><span>sudo apt update <span style="color:#f92672">&amp;&amp;</span> sudo apt upgrade -y
+<h2 id="-workspace--snapshot-setup">🗂️ Workspace &amp; Snapshot Setup<a hidden class="anchor" aria-hidden="true" href="#-workspace--snapshot-setup">#</a></h2>
+<h3 id="create-a-workspace">Create a workspace<a hidden class="anchor" aria-hidden="true" href="#create-a-workspace">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>workspaces create acme_corp
+</span></span><span style="display:flex;"><span>workspaces list
+</span></span><span style="display:flex;"><span>workspaces load acme_corp
+</span></span></code></pre></div><h3 id="take-a-snapshot-before-running-scans">Take a snapshot before running scans<a hidden class="anchor" aria-hidden="true" href="#take-a-snapshot-before-running-scans">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>snapshots take pre-scan
+</span></span></code></pre></div><hr>
+<h2 id="-api-key-configuration">🔐 API Key Configuration<a hidden class="anchor" aria-hidden="true" href="#-api-key-configuration">#</a></h2>
+<p>Many modules require API keys (Shodan, BinaryEdge, Bing, etc.)</p>
+<h3 id="add-api-key">Add API Key<a hidden class="anchor" aria-hidden="true" href="#add-api-key">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>keys add shodan_api YOUR_SHODAN_KEY
+</span></span></code></pre></div><h3 id="list-all-keys">List all keys<a hidden class="anchor" aria-hidden="true" href="#list-all-keys">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>keys list
+</span></span></code></pre></div><hr>
+<h2 id="-module-marketplace">🧩 Module Marketplace<a hidden class="anchor" aria-hidden="true" href="#-module-marketplace">#</a></h2>
+<h3 id="search-modules">Search modules<a hidden class="anchor" aria-hidden="true" href="#search-modules">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>marketplace search whois
+</span></span></code></pre></div><h3 id="install-a-module">Install a module<a hidden class="anchor" aria-hidden="true" href="#install-a-module">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>marketplace install recon/domains-hosts/whois_pocs
+</span></span></code></pre></div><h3 id="load-module">Load module<a hidden class="anchor" aria-hidden="true" href="#load-module">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>modules load recon/domains-hosts/whois_pocs
+</span></span></code></pre></div><h3 id="set-required-options">Set required options<a hidden class="anchor" aria-hidden="true" href="#set-required-options">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>options set SOURCE example.com
+</span></span></code></pre></div><h3 id="run-module">Run module<a hidden class="anchor" aria-hidden="true" href="#run-module">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>run
+</span></span></code></pre></div><hr>
+<h2 id="-database-commands">🧱 Database Commands<a hidden class="anchor" aria-hidden="true" href="#-database-commands">#</a></h2>
+<p>Recon-ng stores all output in a local SQLite database.</p>
+<h3 id="view-status-of-tables">View status of tables<a hidden class="anchor" aria-hidden="true" href="#view-status-of-tables">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>db status
+</span></span></code></pre></div><h3 id="query-a-table">Query a table<a hidden class="anchor" aria-hidden="true" href="#query-a-table">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>db query hosts
+</span></span></code></pre></div><h3 id="insert-manually">Insert manually<a hidden class="anchor" aria-hidden="true" href="#insert-manually">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>db insert hosts hostname<span style="color:#f92672">=</span>example.com ip_address<span style="color:#f92672">=</span>1.2.3.4 source<span style="color:#f92672">=</span>manual
+</span></span></code></pre></div><h3 id="export-table-to-csv">Export table to CSV<a hidden class="anchor" aria-hidden="true" href="#export-table-to-csv">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>db export hosts
+</span></span></code></pre></div><hr>
+<h2 id="-real-cli-example-output">📊 Real CLI Example Output<a hidden class="anchor" aria-hidden="true" href="#-real-cli-example-output">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>recon-ng<span style="color:#f92672">][</span>acme_corp<span style="color:#f92672">]</span> &gt; db query hosts
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span>
-</span></span><span style="display:flex;"><span>sudo apt install python3 python3-pip git -y
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clone Recon-ng repository</span>
-</span></span><span style="display:flex;"><span>git clone https://github.com/lanmaster53/recon-ng.git
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Navigate into directory</span>
-</span></span><span style="display:flex;"><span>cd recon-ng
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install Python dependencies</span>
-</span></span><span style="display:flex;"><span>pip3 install -r REQUIREMENTS
-</span></span></code></pre></div><h3 id="-run-the-framework">✅ Run the Framework<a hidden class="anchor" aria-hidden="true" href="#-run-the-framework">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 recon-ng
-</span></span></code></pre></div><p>📤 Output:</p>
-<pre tabindex="0"><code>[recon-ng][default] &gt;
-</code></pre><hr>
-<h2 id="-getting-started-with-recon-ng">🛠️ Getting Started with Recon-ng<a hidden class="anchor" aria-hidden="true" href="#-getting-started-with-recon-ng">#</a></h2>
+</span></span><span style="display:flex;"><span>+----+-------------------+-------------+---------+
+</span></span><span style="display:flex;"><span>| id |     hostname      | ip_address  | source  |
+</span></span><span style="display:flex;"><span>+----+-------------------+-------------+---------+
+</span></span><span style="display:flex;"><span>| <span style="color:#ae81ff">1</span>  | test.acme.com     | 104.26.10.3 | bing    |
+</span></span><span style="display:flex;"><span>| <span style="color:#ae81ff">2</span>  | mail.acme.com     | 104.26.11.3 | bing    |
+</span></span><span style="display:flex;"><span>+----+-------------------+-------------+---------+
+</span></span></code></pre></div><hr>
+<h2 id="-real-world-use-case-industrial-red-team">🏢 Real-World Use Case (Industrial Red Team)<a hidden class="anchor" aria-hidden="true" href="#-real-world-use-case-industrial-red-team">#</a></h2>
+<h3 id="-scenario">🎯 Scenario:<a hidden class="anchor" aria-hidden="true" href="#-scenario">#</a></h3>
+<p>A <strong>cybersecurity consultant</strong> is hired by a large enterprise to assess their external exposure (no internal access). They use Recon-ng as part of the <strong>initial recon phase</strong>.</p>
+<h3 id="-workflow">🔄 Workflow:<a hidden class="anchor" aria-hidden="true" href="#-workflow">#</a></h3>
+<ol>
+<li>
+<p>Create a workspace:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>workspaces create client_enterprise
+</span></span></code></pre></div></li>
+<li>
+<p>Run domain reconnaissance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>modules load recon/domains-hosts/bing
+</span></span><span style="display:flex;"><span>options set SOURCE client.com
+</span></span><span style="display:flex;"><span>run
+</span></span></code></pre></div></li>
+<li>
+<p>Harvest emails:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>modules load recon/contacts-credentials/theharvester
+</span></span><span style="display:flex;"><span>options set SOURCE client.com
+</span></span><span style="display:flex;"><span>run
+</span></span></code></pre></div></li>
+<li>
+<p>Discover IPs and Ports using Shodan:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>modules load recon/hosts-hosts/shodan_hostname
+</span></span><span style="display:flex;"><span>keys add shodan_api API_KEY
+</span></span><span style="display:flex;"><span>options set SOURCE client.com
+</span></span><span style="display:flex;"><span>run
+</span></span></code></pre></div></li>
+<li>
+<p>Export results to CSV for reporting:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>db export hosts
+</span></span><span style="display:flex;"><span>db export contacts
+</span></span></code></pre></div></li>
+<li>
+<p>Record session for audit:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>script record session1.rec
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># (run modules)</span>
+</span></span><span style="display:flex;"><span>script stop
+</span></span></code></pre></div></li>
+<li>
+<p>Present findings to client in report format.</p>
+</li>
+</ol>
 <hr>
-<h3 id="-step-1-create-a-workspace">🗂️ Step 1: Create a Workspace<a hidden class="anchor" aria-hidden="true" href="#-step-1-create-a-workspace">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>workspaces create testlab
-</span></span></code></pre></div><p>📤</p>
-<pre tabindex="0"><code>[+] Workspace &#39;testlab&#39; created.
-</code></pre><hr>
-<h3 id="-step-2-add-target-domain">🌍 Step 2: Add Target Domain<a hidden class="anchor" aria-hidden="true" href="#-step-2-add-target-domain">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>add domains example.com
-</span></span></code></pre></div><p>📤</p>
-<pre tabindex="0"><code>[+] Added: example.com
-</code></pre><hr>
-<h3 id="-step-3-search-modules">🔍 Step 3: Search Modules<a hidden class="anchor" aria-hidden="true" href="#-step-3-search-modules">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>search domains-hosts
-</span></span></code></pre></div><p>📤 Output:</p>
-<pre tabindex="0"><code>Module Path                             Description
--------------------------------------   ----------------------------------------------
-recon/domains-hosts/bing_domain_web     Harvest hosts using Bing
-recon/domains-hosts/crtsh               Find subdomains from public certs
-recon/domains-hosts/brute_hosts         Brute force subdomains
-</code></pre><hr>
-<h3 id="-step-4-use-a-module--run-it">⚙️ Step 4: Use a Module &amp; Run It<a hidden class="anchor" aria-hidden="true" href="#-step-4-use-a-module--run-it">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/domains-hosts/crtsh
-</span></span><span style="display:flex;"><span>set SOURCE example.com
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><p>📤</p>
-<pre tabindex="0"><code>[*] Searching crt.sh for example.com...
-[+] Found: dev.example.com
-[+] Found: blog.example.com
-</code></pre><hr>
-<h3 id="-step-5-view-results">🔎 Step 5: View Results<a hidden class="anchor" aria-hidden="true" href="#-step-5-view-results">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>show hosts
-</span></span></code></pre></div><p>📤</p>
-<pre tabindex="0"><code>+-------------------+-----------+
-| host              | ip_address|
-+-------------------+-----------+
-| dev.example.com   |           |
-| blog.example.com  |           |
-+-------------------+-----------+
-</code></pre><hr>
-<h3 id="-step-6-resolve-hostnames">🌐 Step 6: Resolve Hostnames<a hidden class="anchor" aria-hidden="true" href="#-step-6-resolve-hostnames">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/hosts-hosts/resolve
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><p>📤</p>
-<pre tabindex="0"><code>[+] dev.example.com -&gt; 192.168.1.12
-[+] blog.example.com -&gt; 192.168.1.13
-</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>show hosts
-</span></span></code></pre></div><hr>
-<h3 id="-step-7-add-api-keys">🔑 Step 7: Add API Keys<a hidden class="anchor" aria-hidden="true" href="#-step-7-add-api-keys">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>keys add shodan_api YOUR_SHODAN_API_KEY
-</span></span><span style="display:flex;"><span>keys add hunterio_api YOUR_HUNTER_API_KEY
-</span></span><span style="display:flex;"><span>keys list
-</span></span></code></pre></div><hr>
-<h3 id="-step-8-collect-ports-via-shodan">🧪 Step 8: Collect Ports via Shodan<a hidden class="anchor" aria-hidden="true" href="#-step-8-collect-ports-via-shodan">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/hosts-ports/shodan_hostname
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><p>📤</p>
-<pre tabindex="0"><code>[+] dev.example.com - Port 22
-[+] blog.example.com - Ports 80, 443
-</code></pre><hr>
-<h3 id="-step-9-find-emails-via-hunterio">📧 Step 9: Find Emails via Hunter.io<a hidden class="anchor" aria-hidden="true" href="#-step-9-find-emails-via-hunterio">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/domains-contacts/hunter_io
-</span></span><span style="display:flex;"><span>set SOURCE example.com
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>show contacts
-</span></span></code></pre></div><p>📤</p>
-<pre tabindex="0"><code>+----------------------+-------------------------+
-| first_name           | email                   |
-+----------------------+-------------------------+
-| John                 | john@example.com        |
-| Jane                 | jane@example.com        |
-+----------------------+-------------------------+
-</code></pre><hr>
-<h3 id="-step-10-export-report">📤 Step 10: Export Report<a hidden class="anchor" aria-hidden="true" href="#-step-10-export-report">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export csv /home/rajkumar/recon-output.csv
-</span></span></code></pre></div><p>📤</p>
-<pre tabindex="0"><code>[+] Exported data to recon-output.csv
-</code></pre><hr>
-<h2 id="-expert-tips-for-recon-ng">⚡ Expert Tips for Recon-ng<a hidden class="anchor" aria-hidden="true" href="#-expert-tips-for-recon-ng">#</a></h2>
+<h2 id="-blue-team-use-case">🛡️ Blue Team Use Case<a hidden class="anchor" aria-hidden="true" href="#-blue-team-use-case">#</a></h2>
 <ul>
-<li>🧠 Use <code>search</code> often to discover relevant modules quickly.</li>
-<li>🗂️ Use <code>notes add</code> to keep case notes per workspace.</li>
-<li>🔁 Combine modules: <code>crtsh</code> → <code>resolve</code> → <code>shodan_hostname</code> → <code>export</code>.</li>
-<li>💡 Integrate Recon-ng with Bash or Python for automated recon.</li>
-<li>🔒 Never forget to add valid API keys for premium modules.</li>
-<li>💬 You can script module runs using the <code>.recon-ngrc</code> file for automation.</li>
+<li>SOC team uses Recon-ng to <strong>monitor brand exposure</strong> and <strong>typosquatted domains</strong> weekly.</li>
+<li>Uses automated scripts to spool outputs and alerts when new external assets appear.</li>
+<li>Integration with email alerting via cronjobs and recon-ng’s scripting mode.</li>
 </ul>
 <hr>
-<h2 id="-sample-recon-chain-red-team-example">🎯 Sample Recon Chain (Red Team Example)<a hidden class="anchor" aria-hidden="true" href="#-sample-recon-chain-red-team-example">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>workspaces create redteam
-</span></span><span style="display:flex;"><span>add domains acme-corp.com
-</span></span><span style="display:flex;"><span>use recon/domains-hosts/crtsh
-</span></span><span style="display:flex;"><span>set SOURCE acme-corp.com
-</span></span><span style="display:flex;"><span>run
-</span></span><span style="display:flex;"><span>use recon/hosts-hosts/resolve
-</span></span><span style="display:flex;"><span>run
-</span></span><span style="display:flex;"><span>use recon/hosts-ports/shodan_hostname
-</span></span><span style="display:flex;"><span>run
-</span></span><span style="display:flex;"><span>export csv ~/acme-recon.csv
-</span></span></code></pre></div><p>📤 Output CSV:</p>
-<pre tabindex="0"><code>host, ip, ports, service
-dev.acme-corp.com, 192.0.2.1, 80, http
-api.acme-corp.com, 192.0.2.2, 443, https
-</code></pre><h2 id="-newly-added-sections-beyond-standard-guides">🔥 <strong>Newly Added Sections</strong> (Beyond Standard Guides)<a hidden class="anchor" aria-hidden="true" href="#-newly-added-sections-beyond-standard-guides">#</a></h2>
-<h3 id="1-advanced-module-chaining-for-threat-hunting">1. <strong>Advanced Module Chaining for Threat Hunting</strong><a hidden class="anchor" aria-hidden="true" href="#1-advanced-module-chaining-for-threat-hunting">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Example: Full domain takeover recon workflow</span>
-</span></span><span style="display:flex;"><span>workspaces create takeover_scan
-</span></span><span style="display:flex;"><span>use recon/domains-hosts/crtsh
-</span></span><span style="display:flex;"><span>set SOURCE example.com
-</span></span><span style="display:flex;"><span>run
-</span></span><span style="display:flex;"><span>use recon/domains-hosts/ssl_common
-</span></span><span style="display:flex;"><span>run
-</span></span><span style="display:flex;"><span>use recon/hosts-hosts/resolve
-</span></span><span style="display:flex;"><span>run
-</span></span><span style="display:flex;"><span>use recon/hosts-ports/shodan_hostname
-</span></span><span style="display:flex;"><span>keys add shodan_api YOUR_KEY
-</span></span><span style="display:flex;"><span>run
-</span></span><span style="display:flex;"><span>use reporting/html_report
-</span></span><span style="display:flex;"><span>set FILENAME /tmp/takeover_audit.html
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><h3 id="2-api-key-optimization">2. <strong>API Key Optimization</strong><a hidden class="anchor" aria-hidden="true" href="#2-api-key-optimization">#</a></h3>
-<p><strong>Critical APIs to Integrate:</strong></p>
-<ul>
-<li>Shodan (host/port intelligence)</li>
-<li>Hunter.io (email pattern discovery)</li>
-<li>GitHub (credential leaks)</li>
-<li>Censys (SSL/TLS analysis)</li>
-<li>SecurityTrails (historical DNS)</li>
-</ul>
-<p><strong>Pro Tip:</strong> Store keys encrypted using:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>keys add --encrypt hunter_api YOUR_KEY
-</span></span></code></pre></div><h3 id="3-custom-module-development">3. <strong>Custom Module Development</strong><a hidden class="anchor" aria-hidden="true" href="#3-custom-module-development">#</a></h3>
-<p><strong>File Structure:</strong></p>
-<pre tabindex="0"><code>~/.recon-ng/modules/custom/
-└── my_custom_module.py
-</code></pre><p><strong>Template:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> recon.core.module <span style="color:#f92672">import</span> BaseModule
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Module</span>(BaseModule):
-</span></span><span style="display:flex;"><span>    meta <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;name&#39;</span>: <span style="color:#e6db74">&#39;Custom Domain Scraper&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;author&#39;</span>: <span style="color:#e6db74">&#39;Your Name&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;description&#39;</span>: <span style="color:#e6db74">&#39;Fetches subdomains from internal DB&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;query&#39;</span>: <span style="color:#e6db74">&#39;SELECT DISTINCT domain FROM domains WHERE domain LIKE &#34;</span><span style="color:#e6db74">%e</span><span style="color:#e6db74">xample%&#34;&#39;</span>,
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">module_run</span>(self, domains):
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> domain <span style="color:#f92672">in</span> domains:
-</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>alert(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Checking </span><span style="color:#e6db74">{</span>domain<span style="color:#e6db74">}</span><span style="color:#e6db74">...&#34;</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Your logic here</span>
-</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>add_hosts(host<span style="color:#f92672">=</span>ip, hostname<span style="color:#f92672">=</span>domain)
-</span></span></code></pre></div><h3 id="4-defensive-countermeasures">4. <strong>Defensive Countermeasures</strong><a hidden class="anchor" aria-hidden="true" href="#4-defensive-countermeasures">#</a></h3>
-<p><strong>Blue Team Use Cases:</strong></p>
-<ul>
-<li>Monitor for your organization&rsquo;s data leaks:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/companies-credentials/github_company
-</span></span><span style="display:flex;"><span>set SOURCE <span style="color:#e6db74">&#34;YourCompany&#34;</span>
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div></li>
-<li>Automate dark web monitoring:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/creds-credentials/pastebin_search
-</span></span><span style="display:flex;"><span>set QUERY <span style="color:#e6db74">&#34;yourcompany.com password&#34;</span>
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div></li>
-</ul>
-<h3 id="5-cloud-recon-tactics">5. <strong>Cloud Recon Tactics</strong><a hidden class="anchor" aria-hidden="true" href="#5-cloud-recon-tactics">#</a></h3>
-<p><strong>AWS Bucket Discovery:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/domains-hosts/aws_brute
-</span></span><span style="display:flex;"><span>set SOURCE example.com
-</span></span><span style="display:flex;"><span>set WORDLIST /path/to/bucket_words.txt
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><p><strong>Azure Blob Scanning:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/domains-hosts/azure_brute
-</span></span><span style="display:flex;"><span>set METHOD METADATA  <span style="color:#75715e"># Checks for open listing</span>
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><h3 id="6-mobile-app-recon">6. <strong>Mobile App Recon</strong><a hidden class="anchor" aria-hidden="true" href="#6-mobile-app-recon">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/domains-hosts/apptweak
-</span></span><span style="display:flex;"><span>set STORE google_play  <span style="color:#75715e"># or app_store</span>
-</span></span><span style="display:flex;"><span>set APP_ID com.example.app
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><h3 id="7-bypassing-anti-osint-defenses">7. <strong>Bypassing Anti-OSINT Defenses</strong><a hidden class="anchor" aria-hidden="true" href="#7-bypassing-anti-osint-defenses">#</a></h3>
-<ul>
-<li>Rotating User-Agents:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>self<span style="color:#f92672">.</span>agent <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>choice(self<span style="color:#f92672">.</span>user_agents) 
-</span></span></code></pre></div></li>
-<li>Tor Integration:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip3 install stem
-</span></span><span style="display:flex;"><span>export SOCKS_PROXY<span style="color:#f92672">=</span>socks5://127.0.0.1:9050
-</span></span></code></pre></div></li>
-<li>Delay Configuration:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>set DELAY <span style="color:#ae81ff">5</span>  <span style="color:#75715e"># seconds between requests</span>
-</span></span></code></pre></div></li>
-</ul>
-<h3 id="8-siem-integration">8. <strong>SIEM Integration</strong><a hidden class="anchor" aria-hidden="true" href="#8-siem-integration">#</a></h3>
-<p><strong>Elasticsearch Example:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use reporting/elasticsearch
-</span></span><span style="display:flex;"><span>set HOST 192.168.1.100
-</span></span><span style="display:flex;"><span>set INDEX recon-ng-scans
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><h3 id="9-maltego-transform-server">9. <strong>Maltego Transform Server</strong><a hidden class="anchor" aria-hidden="true" href="#9-maltego-transform-server">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> maltego_trx.maltego <span style="color:#f92672">import</span> MaltegoMsg
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> maltego_trx.transform <span style="color:#f92672">import</span> DiscoverableTransform
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ReconNGTransform</span>(DiscoverableTransform):
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_entities</span>(cls, request: MaltegoMsg, response):
-</span></span><span style="display:flex;"><span>        domain <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>Value
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Call Recon-ng modules via API</span>
-</span></span><span style="display:flex;"><span>        response<span style="color:#f92672">.</span>addEntity(<span style="color:#e6db74">&#34;maltego.Domain&#34;</span>, domain)
-</span></span></code></pre></div><h3 id="10-performance-tuning">10. <strong>Performance Tuning</strong><a hidden class="anchor" aria-hidden="true" href="#10-performance-tuning">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In ~/.recon-ng/config</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>performance<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>threads <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>
-</span></span><span style="display:flex;"><span>timeout <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
-</span></span><span style="display:flex;"><span>retries <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
-</span></span></code></pre></div><h2 id="-advanced-troubleshooting">🛠️ <strong>Advanced Troubleshooting</strong><a hidden class="anchor" aria-hidden="true" href="#-advanced-troubleshooting">#</a></h2>
-<h3 id="debugging-module-failures">Debugging Module Failures<a hidden class="anchor" aria-hidden="true" href="#debugging-module-failures">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>set DEBUG True  <span style="color:#75715e"># Before running module</span>
-</span></span></code></pre></div><h3 id="network-capture-analysis">Network Capture Analysis<a hidden class="anchor" aria-hidden="true" href="#network-capture-analysis">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tcpdump -i eth0 -w recon-ng.pcap
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Filter later with:</span>
-</span></span><span style="display:flex;"><span>tshark -r recon-ng.pcap -Y <span style="color:#e6db74">&#34;http.request or dns&#34;</span>
-</span></span></code></pre></div><h2 id="-module-deep-dives">🧩 <strong>Module Deep Dives</strong><a hidden class="anchor" aria-hidden="true" href="#-module-deep-dives">#</a></h2>
-<h3 id="1-certificate-transparency-logs">1. <strong>Certificate Transparency Logs</strong><a hidden class="anchor" aria-hidden="true" href="#1-certificate-transparency-logs">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/domains-hosts/certspotter
-</span></span><span style="display:flex;"><span>set SOURCE example.com
-</span></span><span style="display:flex;"><span>set LIMIT <span style="color:#ae81ff">500</span>  <span style="color:#75715e"># Increase for large orgs</span>
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><h3 id="2-email-pattern-analysis">2. <strong>Email Pattern Analysis</strong><a hidden class="anchor" aria-hidden="true" href="#2-email-pattern-analysis">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/domains-contacts/hunter_verify
-</span></span><span style="display:flex;"><span>set DOMAIN example.com
-</span></span><span style="display:flex;"><span>set FIRST <span style="color:#e6db74">&#34;John&#34;</span>  <span style="color:#75715e"># CEO name from LinkedIn</span>
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><h3 id="3-cloud-metadata-harvesting">3. <strong>Cloud Metadata Harvesting</strong><a hidden class="anchor" aria-hidden="true" href="#3-cloud-metadata-harvesting">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/hosts-hosts/cloud_metadata
-</span></span><span style="display:flex;"><span>set TARGET 169.254.169.254  <span style="color:#75715e"># AWS/Azure/GCP IP</span>
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><h2 id="-data-correlation-techniques">📊 <strong>Data Correlation Techniques</strong><a hidden class="anchor" aria-hidden="true" href="#-data-correlation-techniques">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># After multiple modules:</span>
-</span></span><span style="display:flex;"><span>use reporting/correlation_engine
-</span></span><span style="display:flex;"><span>set ENTITY_TYPE hosts
-</span></span><span style="display:flex;"><span>set CONFIDENCE <span style="color:#ae81ff">80</span>  <span style="color:#75715e"># Filter low-quality matches</span>
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><h2 id="-red-team-kill-chain-integration">🎯 <strong>Red Team Kill Chain Integration</strong><a hidden class="anchor" aria-hidden="true" href="#-red-team-kill-chain-integration">#</a></h2>
+<h2 id="-pro-tips">📎 Pro Tips<a hidden class="anchor" aria-hidden="true" href="#-pro-tips">#</a></h2>
 <table>
   <thead>
       <tr>
-          <th>Phase</th>
-          <th>Recon-ng Modules</th>
+          <th>Tip</th>
+          <th>Details</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>Recon</td>
-          <td><code>domains-hosts</code>, <code>companies-people</code></td>
+          <td>🔁 Reuse scripts</td>
+          <td>Record common recon workflows with <code>script record</code> and automate repeat assessments.</td>
       </tr>
       <tr>
-          <td>Weaponization</td>
-          <td><code>creds-credentials/pastebin_search</code></td>
+          <td>📂 Use workspaces</td>
+          <td>Never mix multiple engagements. Keep targets isolated.</td>
       </tr>
       <tr>
-          <td>Delivery</td>
-          <td><code>domains-contacts/hunter_io</code> (for phishing)</td>
+          <td>🔐 Add API keys</td>
+          <td>Modules like Shodan, Censys, and Bing require keys.</td>
       </tr>
       <tr>
-          <td>Exploitation</td>
-          <td><code>hosts-ports/shodan_hostname</code> (vuln check)</td>
+          <td>📜 Spool outputs</td>
+          <td>Log everything for compliance using <code>spool start</code>.</td>
+      </tr>
+      <tr>
+          <td>📡 Combine with Maltego</td>
+          <td>Export CSV and visualize graphically.</td>
       </tr>
   </tbody>
 </table>
+<hr>
+<h2 id="-practice-lab-task">🧪 Practice Lab Task<a hidden class="anchor" aria-hidden="true" href="#-practice-lab-task">#</a></h2>
+<p>Try this on your own:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>workspaces create testlab
+</span></span><span style="display:flex;"><span>marketplace install recon/domains-hosts/bing
+</span></span><span style="display:flex;"><span>modules load recon/domains-hosts/bing
+</span></span><span style="display:flex;"><span>options set SOURCE tesla.com
+</span></span><span style="display:flex;"><span>run
+</span></span><span style="display:flex;"><span>db export hosts
+</span></span></code></pre></div><p>Expected Output:</p>
+<ul>
+<li>A list of subdomains</li>
+<li>Their IPs</li>
+<li>Saved in <code>hosts.csv</code></li>
+</ul>
 <h2 id="-maintenance--updates">📆 <strong>Maintenance &amp; Updates</strong><a hidden class="anchor" aria-hidden="true" href="#-maintenance--updates">#</a></h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Weekly update routine</span>
 </span></span><span style="display:flex;"><span>cd ~/recon-ng
 </span></span><span style="display:flex;"><span>git pull
 </span></span><span style="display:flex;"><span>pip3 install -r REQUIREMENTS --upgrade
 </span></span><span style="display:flex;"><span>python3 recon-cli -M  <span style="color:#75715e"># Check module updates</span>
-</span></span></code></pre></div><hr>
-<h2 id="-professional-services-integration">💼 <strong>Professional Services Integration</strong><a hidden class="anchor" aria-hidden="true" href="#-professional-services-integration">#</a></h2>
-<h3 id="1-automated-client-reporting">1. <strong>Automated Client Reporting</strong><a hidden class="anchor" aria-hidden="true" href="#1-automated-client-reporting">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use reporting/jinja2_template
-</span></span><span style="display:flex;"><span>set TEMPLATE /templates/client_report.html.j2
-</span></span><span style="display:flex;"><span>set OUTPUT /deliverables/client_2025.html
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><h3 id="2-pci-dss-compliance-scanning">2. <strong>PCI DSS Compliance Scanning</strong><a hidden class="anchor" aria-hidden="true" href="#2-pci-dss-compliance-scanning">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>workspaces create pci_audit
-</span></span><span style="display:flex;"><span>use recon/domains-hosts/pci_scope
-</span></span><span style="display:flex;"><span>set SOURCE <span style="color:#e6db74">&#34;*.company.com&#34;</span>
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div><hr>
-<h2 id="-final-pro-tips-from-blackhat-practitioners">📜 <strong>Final Pro Tips from BlackHat Practitioners</strong><a hidden class="anchor" aria-hidden="true" href="#-final-pro-tips-from-blackhat-practitioners">#</a></h2>
-<ol>
-<li>
-<p><strong>Operational Security:</strong></p>
-<ul>
-<li>Always run <code>show keys</code> before engagements to avoid accidental API leaks</li>
-<li>Use <code>workspaces purge</code> after sensitive operations</li>
-</ul>
-</li>
-<li>
-<p><strong>Data Enrichment:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>use recon/hosts-hosts/virustotal
-</span></span><span style="display:flex;"><span>set APIKEY YOUR_KEY
-</span></span><span style="display:flex;"><span>set RESOLVE True  <span style="color:#75715e"># Cross-check IPs</span>
-</span></span><span style="display:flex;"><span>run
-</span></span></code></pre></div></li>
-<li>
-<p><strong>Time-saving Aliases:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>alias recon-start<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;cd ~/recon-ng &amp;&amp; python3 recon-ng -w $1&#39;</span>
-</span></span></code></pre></div></li>
-</ol>
-<h2 id="-final-thoughts">🏁 Final Thoughts<a hidden class="anchor" aria-hidden="true" href="#-final-thoughts">#</a></h2>
+</span></span></code></pre></div><h2 id="-final-thoughts">🏁 Final Thoughts<a hidden class="anchor" aria-hidden="true" href="#-final-thoughts">#</a></h2>
 <p>Recon-ng is a <strong>must-learn tool</strong> for every OSINT analyst, red teamer, and bug bounty hunter. Once mastered, it saves hours of recon effort while giving deep insights into target infrastructure, emails, and vulnerabilities.</p>
 <hr>
 <h2 id="-resources">🔗 Resources<a hidden class="anchor" aria-hidden="true" href="#-resources">#</a></h2>
