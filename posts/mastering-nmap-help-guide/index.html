@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Mastering Nmap for Real-World Network Scanning | RajkumaR&#39;s CyberSec Blog</title>
+<meta name="keywords" content="Nmap, Network Scanning, Cybersecurity, Penetration Testing, Linux">
+<meta name="description" content="A deep dive into mastering Nmap for real-world network scanning with full command outputs, analysis, use cases, and expert tips. Learn how to use Nmap for auditing your local network like a pro.">
+<meta name="author" content="">
+<link rel="canonical" href="https://rjkumarkumawat.github.io/posts/mastering-nmap-help-guide/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://rjkumarkumawat.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rjkumarkumawat.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rjkumarkumawat.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rjkumarkumawat.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rjkumarkumawat.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://rjkumarkumawat.github.io/posts/mastering-nmap-help-guide/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://rjkumarkumawat.github.io/posts/mastering-nmap-help-guide/">
+  <meta property="og:site_name" content="RajkumaR&#39;s CyberSec Blog">
+  <meta property="og:title" content="Mastering Nmap for Real-World Network Scanning">
+  <meta property="og:description" content="A deep dive into mastering Nmap for real-world network scanning with full command outputs, analysis, use cases, and expert tips. Learn how to use Nmap for auditing your local network like a pro.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-07T00:00:00+00:00">
+    <meta property="article:tag" content="Nmap">
+    <meta property="article:tag" content="Network Scanning">
+    <meta property="article:tag" content="Cybersecurity">
+    <meta property="article:tag" content="Penetration Testing">
+    <meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mastering Nmap for Real-World Network Scanning">
+<meta name="twitter:description" content="A deep dive into mastering Nmap for real-world network scanning with full command outputs, analysis, use cases, and expert tips. Learn how to use Nmap for auditing your local network like a pro.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://rjkumarkumawat.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Mastering Nmap for Real-World Network Scanning",
+      "item": "https://rjkumarkumawat.github.io/posts/mastering-nmap-help-guide/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Mastering Nmap for Real-World Network Scanning",
+  "name": "Mastering Nmap for Real-World Network Scanning",
+  "description": "A deep dive into mastering Nmap for real-world network scanning with full command outputs, analysis, use cases, and expert tips. Learn how to use Nmap for auditing your local network like a pro.",
+  "keywords": [
+    "Nmap", "Network Scanning", "Cybersecurity", "Penetration Testing", "Linux"
+  ],
+  "articleBody": " 📌 Purpose: This guide explains every important nmap option using its -h output, includes practical usage examples, analysis, and real-world scanning tactics. Designed for cybersecurity students, red teamers, and system admins.\n🛠️ Nmap Installation Guide Before diving in, let’s install Nmap on your system. It’s cross-platform and very easy to set up.\nUbuntu / Debian: sudo apt update \u0026\u0026 sudo apt install nmap -y CentOS / RHEL: sudo yum install nmap -y Arch Linux: sudo pacman -S nmap macOS (via Homebrew): brew install nmap 🔹 Windows Download from official site: https://nmap.org/download.html Run the installer (includes Zenmap GUI if desired) Add Nmap to PATH during install for CLI use from Command Prompt or PowerShell ✅ Once installed, test it using:\nnmap --version 📘 Nmap Help Guide: Full Command Overview (nmap -h) Run:\nnmap -h Nmap 7.93 ( https://nmap.org ) Usage: nmap [Scan Type(s)] [Options] {target specification} TARGET SPECIFICATION: -iL : Input from list of hosts/networks -iR : Choose random targets --exclude : Exclude hosts/networks --excludefile : Exclude targets from file HOST DISCOVERY: -sL: List Scan - only shows targets -sn: Ping Scan - disable port scan -Pn: Treat all hosts as online ... SCAN TECHNIQUES: -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans -sU: UDP Scan -sN/sF/sX: TCP Null, FIN, and Xmas scans PORTS AND ORDER: -p : Only scan specified ports -F: Fast mode ... VERSION DETECTION: -sV: Probe open ports to determine service/version info ... SCRIPTING: -sC: Use default scripts --script= ... OS DETECTION: -O: Enable OS detection ... TIMING: -T\u003c0-5\u003e: Set timing template (higher is faster) ... EVASION: -f, -D, -S, -e, --data-length, --spoof-mac, etc. OUTPUT: -oN/-oX/-oG: Output formats -v: Increase verbosity --reason: Show port state reason ... MISC: -A: Aggressive scan (-O -sV -sC -traceroute) -6: Enable IPv6 scanning -h: Show this help 🧠 Key Flags with Description Flag Description Example -sS Stealth TCP SYN scan nmap -sS 192.168.1.1 -sV Detect service versions nmap -sV 10.10.10.10 -O OS fingerprinting nmap -O scanme.nmap.org -A Aggressive (OS + version + script) nmap -A 192.168.0.0/24 -Pn Skip ping/host discovery nmap -Pn 192.168.1.100 --script Run NSE scripts nmap --script=vuln 192.168.1.5 -T4 Speed up scan on fast networks nmap -T4 192.168.1.0/24 -p Port selection nmap -p 22,80,443 192.168.1.1 🧪 Pro Tips: Combine Flags sudo nmap -sS -sV -O -A -p 1-1000 -T4 -oN result.txt 192.168.1.5 ✔️ What this does:\nSYN scan Detects version \u0026 OS Uses default scripts Full port sweep Saves to result.txt 🎯 Introduction In this tutorial, we’ll master Nmap for real-world network scanning scenarios. You’ll learn:\nHow to discover all devices in a subnet How to scan open ports \u0026 detect service versions How to fingerprint operating systems How to identify firewalled ports How to evade detection using stealth mode How to detect vulnerabilities using Nmap scripts This is a hands-on guide with real command outputs, analysis, and practical use cases for both beginners and pros.\n🧰 Scenario: Audit Your LAN with Nmap Let’s assume you are auditing your home or office network. Your IP range is 192.168.1.0/24, and your machine (hostname: rajkumar) is on IP 192.168.1.5.\n🔍 Step-by-Step Guide ✅ Step 1: Discover All Devices in the Network sudo nmap -sn 192.168.1.0/24 🖥️ Output: Nmap scan report for rajkumar (192.168.1.5) Host is up (0.0012s latency). Nmap scan report for 192.168.1.1 Host is up (0.0007s latency). Nmap scan report for printer.local (192.168.1.100) Host is up (0.0031s latency). 🔍 Description: Shows live devices on the subnet Host rajkumar confirms your machine Other IPs include the router and a printer ✅ Step 2: Scan for Open Ports sudo nmap -sS -p 1-1000 192.168.1.5 🖥️ Output: PORT STATE SERVICE 22/tcp open ssh 80/tcp open http 631/tcp open ipp 🔍 Analysis: 22: Secure Shell – remote login access 80: Web server – Apache likely 631: Internet Printing Protocol – CUPS or printer service ✅ Step 3: Detect Services and Their Versions sudo nmap -sV -p 22,80,631 192.168.1.5 🖥️ Output: PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.4p1 Ubuntu 80/tcp open http Apache httpd 2.4.41 631/tcp open ipp CUPS 2.3.1 🔍 Analysis: These version details help you check for known vulnerabilities (CVEs) ✅ Step 4: Detect the Operating System sudo nmap -O 192.168.1.5 🖥️ Output: OS details: Linux 5.4 - 5.8 Network Distance: 0 hops 🔍 Analysis: Linux system detected, likely Ubuntu/Debian-based Local device (same subnet, no hops) ✅ Step 5: Check for Firewall Rules sudo nmap -sA -p 22,80,631 192.168.1.5 🖥️ Output: PORT STATE SERVICE 22/tcp unfiltered ssh 80/tcp filtered http 631/tcp unfiltered ipp 🔍 Analysis: Port 80 is filtered – likely blocked by UFW or iptables Other ports respond normally ✅ Step 6: Evade Firewalls (Stealth Mode) sudo nmap -sS -T2 -f -D RND:5 192.168.1.5 🔍 Explanation: -f: Fragment packets to bypass firewalls -D RND:5: Use 5 random decoys to hide source -T2: Lower timing for stealth 📌 Tip: This is very useful during Red Team or pentesting when you’re trying not to get detected by IDS/IPS.\n✅ Step 7: Scan for Vulnerabilities sudo nmap --script vuln -p 22,80 192.168.1.5 🖥️ Output: 22/tcp open ssh |_ SSH supports version 1 (insecure) 80/tcp open http | http-vuln-cve2017-5638: | VULNERABLE: | Apache Struts Remote Code Execution |_ Reference: https://nvd.nist.gov/vuln/detail/CVE-2017-5638 🔍 Analysis: SSHv1 support is a known security risk Apache CVE-2017-5638 is critical — immediate patch needed! 📋 Summary Table Goal Command Purpose Discover devices nmap -sn Ping sweep Scan open ports nmap -sS -p Find services Version detection nmap -sV Service version check OS detection nmap -O OS fingerprinting Firewall detection nmap -sA Identify filtered ports Stealth scan nmap -sS -f -D Evade IDS/IPS Vulnerability scan nmap --script vuln CVE detection using NSE scripts 🛡️ Real-World Use Case Summary In this scenario, using just Nmap:\nYou identified hosts on your LAN Detected running services and versions Verified your machine rajkumar is secure Found a vulnerability in Apache that needs patching Learned stealth scanning techniques for offensive/defensive audits 📚 Additional Resources 📺 Nmap Official Book 📂 Exploit Database (for CVEs) 🛡️ CVE Details 🧠 TryHackMe Nmap Room 🗣️ Final Thoughts Nmap is more than a simple port scanner — it’s an intelligent reconnaissance framework for security engineers and ethical hackers. Master these commands and integrate them into your daily audits to stay one step ahead of attackers.\n✅ Try these scans on your own network and share what you discover! 💬 Got stuck? Drop your error or result in the comments — I’d love to help!\n",
+  "wordCount" : "1061",
+  "inLanguage": "en",
+  "datePublished": "2025-07-07T00:00:00Z",
+  "dateModified": "2025-07-07T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://rjkumarkumawat.github.io/posts/mastering-nmap-help-guide/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "RajkumaR's CyberSec Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rjkumarkumawat.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rjkumarkumawat.github.io/" accesskey="h" title="RajkumaR&#39;s CyberSec Blog (Alt + H)">RajkumaR&#39;s CyberSec Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Mastering Nmap for Real-World Network Scanning
+    </h1>
+    <div class="post-description">
+      A deep dive into mastering Nmap for real-world network scanning with full command outputs, analysis, use cases, and expert tips. Learn how to use Nmap for auditing your local network like a pro.
+    </div>
+    <div class="post-meta"><span title='2025-07-07 00:00:00 +0000 UTC'>July 7, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>📌 <strong>Purpose</strong>: This guide explains every important <code>nmap</code> option using its <code>-h</code> output, includes practical usage examples, analysis, and real-world scanning tactics. Designed for cybersecurity students, red teamers, and system admins.</p></blockquote>
+<hr>
+<h2 id="-nmap-installation-guide">🛠️ Nmap Installation Guide<a hidden class="anchor" aria-hidden="true" href="#-nmap-installation-guide">#</a></h2>
+<p>Before diving in, let’s install Nmap on your system. It’s cross-platform and very easy to set up.</p>
+<h3 id="ubuntu--debian">Ubuntu / Debian:<a hidden class="anchor" aria-hidden="true" href="#ubuntu--debian">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update <span style="color:#f92672">&amp;&amp;</span> sudo apt install nmap -y
+</span></span></code></pre></div><h3 id="centos--rhel">CentOS / RHEL:<a hidden class="anchor" aria-hidden="true" href="#centos--rhel">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo yum install nmap -y
+</span></span></code></pre></div><h3 id="arch-linux">Arch Linux:<a hidden class="anchor" aria-hidden="true" href="#arch-linux">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo pacman -S nmap
+</span></span></code></pre></div><h3 id="macos-via-homebrew">macOS (via Homebrew):<a hidden class="anchor" aria-hidden="true" href="#macos-via-homebrew">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install nmap
+</span></span></code></pre></div><h3 id="-windows">🔹 Windows<a hidden class="anchor" aria-hidden="true" href="#-windows">#</a></h3>
+<ol>
+<li>Download from official site: <a href="https://nmap.org/download.html">https://nmap.org/download.html</a></li>
+<li>Run the installer (includes Zenmap GUI if desired)</li>
+<li>Add Nmap to <code>PATH</code> during install for CLI use from Command Prompt or PowerShell</li>
+</ol>
+<p>✅ Once installed, test it using:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap --version
+</span></span></code></pre></div><hr>
+<h2 id="-nmap-help-guide-full-command-overview-nmap--h">📘 Nmap Help Guide: Full Command Overview (<code>nmap -h</code>)<a hidden class="anchor" aria-hidden="true" href="#-nmap-help-guide-full-command-overview-nmap--h">#</a></h2>
+<p>Run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -h
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<pre tabindex="0"><code>Nmap 7.93 ( https://nmap.org )
+Usage: nmap [Scan Type(s)] [Options] {target specification}
+
+TARGET SPECIFICATION:
+  -iL &lt;inputfilename&gt;: Input from list of hosts/networks
+  -iR &lt;num hosts&gt;: Choose random targets
+  --exclude &lt;host1[,host2],...&gt;: Exclude hosts/networks
+  --excludefile &lt;exclude_file&gt;: Exclude targets from file
+
+HOST DISCOVERY:
+  -sL: List Scan - only shows targets
+  -sn: Ping Scan - disable port scan
+  -Pn: Treat all hosts as online
+  ...
+
+SCAN TECHNIQUES:
+  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans
+  -sU: UDP Scan
+  -sN/sF/sX: TCP Null, FIN, and Xmas scans
+
+PORTS AND ORDER:
+  -p &lt;port ranges&gt;: Only scan specified ports
+  -F: Fast mode
+  ...
+
+VERSION DETECTION:
+  -sV: Probe open ports to determine service/version info
+  ...
+
+SCRIPTING:
+  -sC: Use default scripts
+  --script=&lt;Lua scripts&gt;
+  ...
+
+OS DETECTION:
+  -O: Enable OS detection
+  ...
+
+TIMING:
+  -T&lt;0-5&gt;: Set timing template (higher is faster)
+  ...
+
+EVASION:
+  -f, -D, -S, -e, --data-length, --spoof-mac, etc.
+
+OUTPUT:
+  -oN/-oX/-oG: Output formats
+  -v: Increase verbosity
+  --reason: Show port state reason
+  ...
+
+MISC:
+  -A: Aggressive scan (-O -sV -sC -traceroute)
+  -6: Enable IPv6 scanning
+  -h: Show this help
+</code></pre><!-- raw HTML omitted -->
+<hr>
+<h2 id="-key-flags-with-description">🧠 Key Flags with Description<a hidden class="anchor" aria-hidden="true" href="#-key-flags-with-description">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Flag</th>
+          <th>Description</th>
+          <th>Example</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>-sS</code></td>
+          <td>Stealth TCP SYN scan</td>
+          <td><code>nmap -sS 192.168.1.1</code></td>
+      </tr>
+      <tr>
+          <td><code>-sV</code></td>
+          <td>Detect service versions</td>
+          <td><code>nmap -sV 10.10.10.10</code></td>
+      </tr>
+      <tr>
+          <td><code>-O</code></td>
+          <td>OS fingerprinting</td>
+          <td><code>nmap -O scanme.nmap.org</code></td>
+      </tr>
+      <tr>
+          <td><code>-A</code></td>
+          <td>Aggressive (OS + version + script)</td>
+          <td><code>nmap -A 192.168.0.0/24</code></td>
+      </tr>
+      <tr>
+          <td><code>-Pn</code></td>
+          <td>Skip ping/host discovery</td>
+          <td><code>nmap -Pn 192.168.1.100</code></td>
+      </tr>
+      <tr>
+          <td><code>--script</code></td>
+          <td>Run NSE scripts</td>
+          <td><code>nmap --script=vuln 192.168.1.5</code></td>
+      </tr>
+      <tr>
+          <td><code>-T4</code></td>
+          <td>Speed up scan on fast networks</td>
+          <td><code>nmap -T4 192.168.1.0/24</code></td>
+      </tr>
+      <tr>
+          <td><code>-p</code></td>
+          <td>Port selection</td>
+          <td><code>nmap -p 22,80,443 192.168.1.1</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-pro-tips-combine-flags">🧪 Pro Tips: Combine Flags<a hidden class="anchor" aria-hidden="true" href="#-pro-tips-combine-flags">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nmap -sS -sV -O -A -p 1-1000 -T4 -oN result.txt 192.168.1.5
+</span></span></code></pre></div><p>✔️ <strong>What this does</strong>:</p>
+<ul>
+<li>SYN scan</li>
+<li>Detects version &amp; OS</li>
+<li>Uses default scripts</li>
+<li>Full port sweep</li>
+<li>Saves to <code>result.txt</code></li>
+</ul>
+<hr>
+<h2 id="-introduction">🎯 Introduction<a hidden class="anchor" aria-hidden="true" href="#-introduction">#</a></h2>
+<p>In this tutorial, we’ll <strong>master Nmap</strong> for <strong>real-world network scanning</strong> scenarios.
+You’ll learn:</p>
+<ul>
+<li>How to discover all devices in a subnet</li>
+<li>How to scan open ports &amp; detect service versions</li>
+<li>How to fingerprint operating systems</li>
+<li>How to identify firewalled ports</li>
+<li>How to evade detection using stealth mode</li>
+<li>How to detect vulnerabilities using Nmap scripts</li>
+</ul>
+<p>This is a hands-on guide with <strong>real command outputs</strong>, <strong>analysis</strong>, and <strong>practical use cases</strong> for both beginners and pros.</p>
+<hr>
+<h2 id="-scenario-audit-your-lan-with-nmap">🧰 Scenario: Audit Your LAN with Nmap<a hidden class="anchor" aria-hidden="true" href="#-scenario-audit-your-lan-with-nmap">#</a></h2>
+<p>Let’s assume you are auditing your home or office network.
+Your IP range is <code>192.168.1.0/24</code>, and your machine (hostname: <strong>rajkumar</strong>) is on IP <code>192.168.1.5</code>.</p>
+<hr>
+<h2 id="-step-by-step-guide">🔍 Step-by-Step Guide<a hidden class="anchor" aria-hidden="true" href="#-step-by-step-guide">#</a></h2>
+<h3 id="-step-1-discover-all-devices-in-the-network">✅ Step 1: Discover All Devices in the Network<a hidden class="anchor" aria-hidden="true" href="#-step-1-discover-all-devices-in-the-network">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nmap -sn 192.168.1.0/24
+</span></span></code></pre></div><h4 id="-output">🖥️ Output:<a hidden class="anchor" aria-hidden="true" href="#-output">#</a></h4>
+<pre tabindex="0"><code>Nmap scan report for rajkumar (192.168.1.5)
+Host is up (0.0012s latency).
+Nmap scan report for 192.168.1.1
+Host is up (0.0007s latency).
+Nmap scan report for printer.local (192.168.1.100)
+Host is up (0.0031s latency).
+</code></pre><h4 id="-description">🔍 Description:<a hidden class="anchor" aria-hidden="true" href="#-description">#</a></h4>
+<ul>
+<li>Shows live devices on the subnet</li>
+<li>Host <code>rajkumar</code> confirms your machine</li>
+<li>Other IPs include the router and a printer</li>
+</ul>
+<hr>
+<h3 id="-step-2-scan-for-open-ports">✅ Step 2: Scan for Open Ports<a hidden class="anchor" aria-hidden="true" href="#-step-2-scan-for-open-ports">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nmap -sS -p 1-1000 192.168.1.5
+</span></span></code></pre></div><h4 id="-output-1">🖥️ Output:<a hidden class="anchor" aria-hidden="true" href="#-output-1">#</a></h4>
+<pre tabindex="0"><code>PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+631/tcp  open  ipp
+</code></pre><h4 id="-analysis">🔍 Analysis:<a hidden class="anchor" aria-hidden="true" href="#-analysis">#</a></h4>
+<ul>
+<li><code>22</code>: Secure Shell – remote login access</li>
+<li><code>80</code>: Web server – Apache likely</li>
+<li><code>631</code>: Internet Printing Protocol – CUPS or printer service</li>
+</ul>
+<hr>
+<h3 id="-step-3-detect-services-and-their-versions">✅ Step 3: Detect Services and Their Versions<a hidden class="anchor" aria-hidden="true" href="#-step-3-detect-services-and-their-versions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nmap -sV -p 22,80,631 192.168.1.5
+</span></span></code></pre></div><h4 id="-output-2">🖥️ Output:<a hidden class="anchor" aria-hidden="true" href="#-output-2">#</a></h4>
+<pre tabindex="0"><code>PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.4p1 Ubuntu
+80/tcp   open  http    Apache httpd 2.4.41
+631/tcp  open  ipp     CUPS 2.3.1
+</code></pre><h4 id="-analysis-1">🔍 Analysis:<a hidden class="anchor" aria-hidden="true" href="#-analysis-1">#</a></h4>
+<ul>
+<li>These version details help you check for <strong>known vulnerabilities</strong> (CVEs)</li>
+</ul>
+<hr>
+<h3 id="-step-4-detect-the-operating-system">✅ Step 4: Detect the Operating System<a hidden class="anchor" aria-hidden="true" href="#-step-4-detect-the-operating-system">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nmap -O 192.168.1.5
+</span></span></code></pre></div><h4 id="-output-3">🖥️ Output:<a hidden class="anchor" aria-hidden="true" href="#-output-3">#</a></h4>
+<pre tabindex="0"><code>OS details: Linux 5.4 - 5.8
+Network Distance: 0 hops
+</code></pre><h4 id="-analysis-2">🔍 Analysis:<a hidden class="anchor" aria-hidden="true" href="#-analysis-2">#</a></h4>
+<ul>
+<li>Linux system detected, likely Ubuntu/Debian-based</li>
+<li>Local device (same subnet, no hops)</li>
+</ul>
+<hr>
+<h3 id="-step-5-check-for-firewall-rules">✅ Step 5: Check for Firewall Rules<a hidden class="anchor" aria-hidden="true" href="#-step-5-check-for-firewall-rules">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nmap -sA -p 22,80,631 192.168.1.5
+</span></span></code></pre></div><h4 id="-output-4">🖥️ Output:<a hidden class="anchor" aria-hidden="true" href="#-output-4">#</a></h4>
+<pre tabindex="0"><code>PORT     STATE        SERVICE
+22/tcp   unfiltered   ssh
+80/tcp   filtered     http
+631/tcp  unfiltered   ipp
+</code></pre><h4 id="-analysis-3">🔍 Analysis:<a hidden class="anchor" aria-hidden="true" href="#-analysis-3">#</a></h4>
+<ul>
+<li>Port <code>80</code> is filtered – likely blocked by UFW or iptables</li>
+<li>Other ports respond normally</li>
+</ul>
+<hr>
+<h3 id="-step-6-evade-firewalls-stealth-mode">✅ Step 6: Evade Firewalls (Stealth Mode)<a hidden class="anchor" aria-hidden="true" href="#-step-6-evade-firewalls-stealth-mode">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nmap -sS -T2 -f -D RND:5 192.168.1.5
+</span></span></code></pre></div><h4 id="-explanation">🔍 Explanation:<a hidden class="anchor" aria-hidden="true" href="#-explanation">#</a></h4>
+<ul>
+<li><code>-f</code>: Fragment packets to bypass firewalls</li>
+<li><code>-D RND:5</code>: Use 5 random decoys to hide source</li>
+<li><code>-T2</code>: Lower timing for stealth</li>
+</ul>
+<h4 id="-tip">📌 Tip:<a hidden class="anchor" aria-hidden="true" href="#-tip">#</a></h4>
+<p>This is <strong>very useful during Red Team or pentesting</strong> when you&rsquo;re trying not to get detected by IDS/IPS.</p>
+<hr>
+<h3 id="-step-7-scan-for-vulnerabilities">✅ Step 7: Scan for Vulnerabilities<a hidden class="anchor" aria-hidden="true" href="#-step-7-scan-for-vulnerabilities">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nmap --script vuln -p 22,80 192.168.1.5
+</span></span></code></pre></div><h4 id="-output-5">🖥️ Output:<a hidden class="anchor" aria-hidden="true" href="#-output-5">#</a></h4>
+<pre tabindex="0"><code>22/tcp open  ssh
+|_ SSH supports version 1 (insecure)
+
+80/tcp open  http
+| http-vuln-cve2017-5638:
+|   VULNERABLE:
+|   Apache Struts Remote Code Execution
+|_  Reference: https://nvd.nist.gov/vuln/detail/CVE-2017-5638
+</code></pre><h4 id="-analysis-4">🔍 Analysis:<a hidden class="anchor" aria-hidden="true" href="#-analysis-4">#</a></h4>
+<ul>
+<li>SSHv1 support is a known security risk</li>
+<li>Apache CVE-2017-5638 is critical — immediate patch needed!</li>
+</ul>
+<hr>
+<h2 id="-summary-table">📋 Summary Table<a hidden class="anchor" aria-hidden="true" href="#-summary-table">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Goal</th>
+          <th>Command</th>
+          <th>Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Discover devices</td>
+          <td><code>nmap -sn</code></td>
+          <td>Ping sweep</td>
+      </tr>
+      <tr>
+          <td>Scan open ports</td>
+          <td><code>nmap -sS -p</code></td>
+          <td>Find services</td>
+      </tr>
+      <tr>
+          <td>Version detection</td>
+          <td><code>nmap -sV</code></td>
+          <td>Service version check</td>
+      </tr>
+      <tr>
+          <td>OS detection</td>
+          <td><code>nmap -O</code></td>
+          <td>OS fingerprinting</td>
+      </tr>
+      <tr>
+          <td>Firewall detection</td>
+          <td><code>nmap -sA</code></td>
+          <td>Identify filtered ports</td>
+      </tr>
+      <tr>
+          <td>Stealth scan</td>
+          <td><code>nmap -sS -f -D</code></td>
+          <td>Evade IDS/IPS</td>
+      </tr>
+      <tr>
+          <td>Vulnerability scan</td>
+          <td><code>nmap --script vuln</code></td>
+          <td>CVE detection using NSE scripts</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-real-world-use-case-summary">🛡️ Real-World Use Case Summary<a hidden class="anchor" aria-hidden="true" href="#-real-world-use-case-summary">#</a></h2>
+<p>In this scenario, using just Nmap:</p>
+<ul>
+<li>You identified hosts on your LAN</li>
+<li>Detected running services and versions</li>
+<li>Verified your machine <code>rajkumar</code> is secure</li>
+<li>Found a vulnerability in Apache that needs patching</li>
+<li>Learned stealth scanning techniques for offensive/defensive audits</li>
+</ul>
+<hr>
+<h2 id="-additional-resources">📚 Additional Resources<a hidden class="anchor" aria-hidden="true" href="#-additional-resources">#</a></h2>
+<ul>
+<li>📺 <a href="https://nmap.org/book/">Nmap Official Book</a></li>
+<li>📂 <a href="https://www.exploit-db.com/">Exploit Database (for CVEs)</a></li>
+<li>🛡️ <a href="https://cvedetails.com/">CVE Details</a></li>
+<li>🧠 <a href="https://tryhackme.com/room/nmap01">TryHackMe Nmap Room</a></li>
+</ul>
+<hr>
+<h2 id="-final-thoughts">🗣️ Final Thoughts<a hidden class="anchor" aria-hidden="true" href="#-final-thoughts">#</a></h2>
+<p>Nmap is more than a simple port scanner — it&rsquo;s an <strong>intelligent reconnaissance framework</strong> for security engineers and ethical hackers.
+Master these commands and integrate them into your daily audits to stay one step ahead of attackers.</p>
+<hr>
+<p>✅ <strong>Try these scans on your own network and share what you discover!</strong>
+💬 Got stuck? Drop your error or result in the comments — I’d love to help!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://rjkumarkumawat.github.io/tags/nmap/">Nmap</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/network-scanning/">Network Scanning</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/cybersecurity/">Cybersecurity</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/penetration-testing/">Penetration Testing</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/linux/">Linux</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://rjkumarkumawat.github.io/">RajkumaR&#39;s CyberSec Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
