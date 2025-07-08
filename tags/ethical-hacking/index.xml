@@ -6,8 +6,20 @@
     <description>Recent content in Ethical-Hacking on RajkumaR&#39;s CyberSec Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://rjkumarkumawat.github.io/tags/ethical-hacking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mastering Unicornscan: High-Speed Port Scanning with Real-World Analysis</title>
+      <link>https://rjkumarkumawat.github.io/posts/mastering-unicornscan-port-scanning/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/posts/mastering-unicornscan-port-scanning/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;📌 &lt;strong&gt;Purpose&lt;/strong&gt;&lt;br&gt;
+Learn how to use &lt;strong&gt;Unicornscan&lt;/strong&gt; — a high-performance asynchronous port scanner — for advanced network reconnaissance, stealth scans, and OS fingerprinting. Includes real command outputs, PCAP logging, and a full lab scenario.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-introduction&#34;&gt;🚀 Introduction&lt;/h2&gt;
+&lt;p&gt;When you need &lt;strong&gt;blazing-fast port scans&lt;/strong&gt;, &lt;strong&gt;TTL-based OS detection&lt;/strong&gt;, or &lt;strong&gt;stealthy TCP/UDP reconnaissance&lt;/strong&gt;, Unicornscan shines. Included in Kali Linux, this powerful tool delivers performance Nmap sometimes can&amp;rsquo;t match on large-scale or noisy networks.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Mastering Ping: The Network Reconnaissance Swiss Army Knife</title>
       <link>https://rjkumarkumawat.github.io/posts/mastering-ping/</link>

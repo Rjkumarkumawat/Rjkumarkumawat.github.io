@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Mastering Unicornscan: High-Speed Port Scanning with Real-World Analysis | RajkumaR&#39;s CyberSec Blog</title>
+<meta name="keywords" content="Unicornscan, Network Scanning, Port Scanning, Ethical Hacking, OSINT, Red Team, Kali Linux, Reconnaissance">
+<meta name="description" content="
+📌 Purpose
+Learn how to use Unicornscan — a high-performance asynchronous port scanner — for advanced network reconnaissance, stealth scans, and OS fingerprinting. Includes real command outputs, PCAP logging, and a full lab scenario.
+
+🚀 Introduction
+When you need blazing-fast port scans, TTL-based OS detection, or stealthy TCP/UDP reconnaissance, Unicornscan shines. Included in Kali Linux, this powerful tool delivers performance Nmap sometimes can&rsquo;t match on large-scale or noisy networks.">
+<meta name="author" content="">
+<link rel="canonical" href="https://rjkumarkumawat.github.io/posts/mastering-unicornscan-port-scanning/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://rjkumarkumawat.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rjkumarkumawat.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rjkumarkumawat.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rjkumarkumawat.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rjkumarkumawat.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://rjkumarkumawat.github.io/posts/mastering-unicornscan-port-scanning/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://rjkumarkumawat.github.io/posts/mastering-unicornscan-port-scanning/">
+  <meta property="og:site_name" content="RajkumaR&#39;s CyberSec Blog">
+  <meta property="og:title" content="Mastering Unicornscan: High-Speed Port Scanning with Real-World Analysis">
+  <meta property="og:description" content=" 📌 Purpose
+Learn how to use Unicornscan — a high-performance asynchronous port scanner — for advanced network reconnaissance, stealth scans, and OS fingerprinting. Includes real command outputs, PCAP logging, and a full lab scenario.
+🚀 Introduction When you need blazing-fast port scans, TTL-based OS detection, or stealthy TCP/UDP reconnaissance, Unicornscan shines. Included in Kali Linux, this powerful tool delivers performance Nmap sometimes can’t match on large-scale or noisy networks.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-08T00:00:00+00:00">
+    <meta property="article:tag" content="Unicornscan">
+    <meta property="article:tag" content="Network Scanning">
+    <meta property="article:tag" content="Port Scanning">
+    <meta property="article:tag" content="Ethical-Hacking">
+    <meta property="article:tag" content="Osint">
+    <meta property="article:tag" content="Red Team">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mastering Unicornscan: High-Speed Port Scanning with Real-World Analysis">
+<meta name="twitter:description" content="
+📌 Purpose
+Learn how to use Unicornscan — a high-performance asynchronous port scanner — for advanced network reconnaissance, stealth scans, and OS fingerprinting. Includes real command outputs, PCAP logging, and a full lab scenario.
+
+🚀 Introduction
+When you need blazing-fast port scans, TTL-based OS detection, or stealthy TCP/UDP reconnaissance, Unicornscan shines. Included in Kali Linux, this powerful tool delivers performance Nmap sometimes can&rsquo;t match on large-scale or noisy networks.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://rjkumarkumawat.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Mastering Unicornscan: High-Speed Port Scanning with Real-World Analysis",
+      "item": "https://rjkumarkumawat.github.io/posts/mastering-unicornscan-port-scanning/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Mastering Unicornscan: High-Speed Port Scanning with Real-World Analysis",
+  "name": "Mastering Unicornscan: High-Speed Port Scanning with Real-World Analysis",
+  "description": " 📌 Purpose\nLearn how to use Unicornscan — a high-performance asynchronous port scanner — for advanced network reconnaissance, stealth scans, and OS fingerprinting. Includes real command outputs, PCAP logging, and a full lab scenario.\n🚀 Introduction When you need blazing-fast port scans, TTL-based OS detection, or stealthy TCP/UDP reconnaissance, Unicornscan shines. Included in Kali Linux, this powerful tool delivers performance Nmap sometimes can\u0026rsquo;t match on large-scale or noisy networks.\n",
+  "keywords": [
+    "Unicornscan", "Network Scanning", "Port Scanning", "Ethical Hacking", "OSINT", "Red Team", "Kali Linux", "Reconnaissance"
+  ],
+  "articleBody": " 📌 Purpose\nLearn how to use Unicornscan — a high-performance asynchronous port scanner — for advanced network reconnaissance, stealth scans, and OS fingerprinting. Includes real command outputs, PCAP logging, and a full lab scenario.\n🚀 Introduction When you need blazing-fast port scans, TTL-based OS detection, or stealthy TCP/UDP reconnaissance, Unicornscan shines. Included in Kali Linux, this powerful tool delivers performance Nmap sometimes can’t match on large-scale or noisy networks.\nIn this guide, we’ll cover:\n✅ How Unicornscan works ✅ Real usage examples with output ✅ A practical scenario with analysis 🔧 Installation \u0026 Setup Unicornscan is preinstalled in Kali Linux. But to verify or reinstall:\nsudo apt update sudo apt install unicornscan -y unicornscan --version To view all options:\nunicornscan -h 🧪 Scan Syntax \u0026 Modes Basic Format:\nunicornscan [options] ",
+  "wordCount" : "546",
+  "inLanguage": "en",
+  "datePublished": "2025-07-08T00:00:00Z",
+  "dateModified": "2025-07-08T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://rjkumarkumawat.github.io/posts/mastering-unicornscan-port-scanning/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "RajkumaR's CyberSec Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rjkumarkumawat.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rjkumarkumawat.github.io/" accesskey="h" title="RajkumaR&#39;s CyberSec Blog (Alt + H)">RajkumaR&#39;s CyberSec Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Mastering Unicornscan: High-Speed Port Scanning with Real-World Analysis
+    </h1>
+    <div class="post-meta"><span title='2025-07-08 00:00:00 +0000 UTC'>July 8, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>📌 <strong>Purpose</strong><br>
+Learn how to use <strong>Unicornscan</strong> — a high-performance asynchronous port scanner — for advanced network reconnaissance, stealth scans, and OS fingerprinting. Includes real command outputs, PCAP logging, and a full lab scenario.</p></blockquote>
+<hr>
+<h2 id="-introduction">🚀 Introduction<a hidden class="anchor" aria-hidden="true" href="#-introduction">#</a></h2>
+<p>When you need <strong>blazing-fast port scans</strong>, <strong>TTL-based OS detection</strong>, or <strong>stealthy TCP/UDP reconnaissance</strong>, Unicornscan shines. Included in Kali Linux, this powerful tool delivers performance Nmap sometimes can&rsquo;t match on large-scale or noisy networks.</p>
+<p>In this guide, we’ll cover:</p>
+<ul>
+<li>✅ How Unicornscan works</li>
+<li>✅ Real usage examples with output</li>
+<li>✅ A practical scenario with analysis</li>
+</ul>
+<hr>
+<h2 id="-installation--setup">🔧 Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#-installation--setup">#</a></h2>
+<p>Unicornscan is <strong>preinstalled in Kali Linux</strong>. But to verify or reinstall:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install unicornscan -y
+</span></span><span style="display:flex;"><span>unicornscan --version
+</span></span></code></pre></div><p>To view all options:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>unicornscan -h
+</span></span></code></pre></div><hr>
+<h2 id="-scan-syntax--modes">🧪 Scan Syntax &amp; Modes<a hidden class="anchor" aria-hidden="true" href="#-scan-syntax--modes">#</a></h2>
+<p><strong>Basic Format</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>unicornscan <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> &lt;target<span style="color:#f92672">[</span>:ports<span style="color:#f92672">]</span>&gt;
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>-mT</code></td>
+          <td>TCP scan</td>
+      </tr>
+      <tr>
+          <td><code>-mU</code></td>
+          <td>UDP scan</td>
+      </tr>
+      <tr>
+          <td><code>-r &lt;rate&gt;</code></td>
+          <td>Packets/sec (stealth/speed tuning)</td>
+      </tr>
+      <tr>
+          <td><code>-I</code></td>
+          <td>Immediate display (streamed output)</td>
+      </tr>
+      <tr>
+          <td><code>-v</code></td>
+          <td>Verbose</td>
+      </tr>
+      <tr>
+          <td><code>-eosdetect</code></td>
+          <td>TTL-based OS detection</td>
+      </tr>
+      <tr>
+          <td><code>-w</code></td>
+          <td>Save responses to PCAP</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-common-scan-examples-with-output">⚡ Common Scan Examples (with Output)<a hidden class="anchor" aria-hidden="true" href="#-common-scan-examples-with-output">#</a></h2>
+<h3 id="-1-basic-tcp-syn-scan">🔹 1. Basic TCP SYN Scan<a hidden class="anchor" aria-hidden="true" href="#-1-basic-tcp-syn-scan">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo unicornscan 172.16.215.132
+</span></span></code></pre></div><p>📥 Output:</p>
+<pre tabindex="0"><code>TCP open                http[   80]     from 172.16.215.132  ttl 128
+TCP open               epmap[  135]     from 172.16.215.132  ttl 128
+TCP open         netbios-ssn[  139]     from 172.16.215.132  ttl 128
+TCP open        microsoft-ds[  445]     from 172.16.215.132  ttl 128
+</code></pre><p>🧠 <strong>Insight</strong>: Host is running Windows services like NetBIOS and SMB.</p>
+<hr>
+<h3 id="-2-udp-port-check">🔹 2. UDP Port Check<a hidden class="anchor" aria-hidden="true" href="#-2-udp-port-check">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo unicornscan -mU -r200 -I 192.168.100.1:53
+</span></span></code></pre></div><p>📥 Output:</p>
+<pre tabindex="0"><code>UDP open              domain[   53]     from 192.168.100.1  ttl 128
+</code></pre><p>🧠 <strong>Insight</strong>: DNS service active on UDP port 53.</p>
+<hr>
+<h3 id="-3-multi-port-subnet-scan">🔹 3. Multi-Port Subnet Scan<a hidden class="anchor" aria-hidden="true" href="#-3-multi-port-subnet-scan">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo unicornscan -r500 -mT 192.168.100.1/24:80,443,445,339
+</span></span></code></pre></div><p>📥 Output (sample):</p>
+<pre tabindex="0"><code>TCP open                http[   80]     from 192.168.100.5  ttl 64
+TCP open          microsoft-ds[  445]   from 192.168.100.5  ttl 128
+</code></pre><p>🧠 <strong>Insight</strong>: Host is dual-serving HTTP and SMB.</p>
+<hr>
+<h3 id="-4-tcp--os-detection--logging">🔹 4. TCP + OS Detection + Logging<a hidden class="anchor" aria-hidden="true" href="#-4-tcp--os-detection--logging">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo unicornscan -r200 -Iv -eosdetect -mT 172.16.215.1:3306,80,443
+</span></span></code></pre></div><p>📥 Output:</p>
+<pre tabindex="0"><code>TCP open 172.16.215.1:80    ttl 64
+TCP open 172.16.215.1:3306  ttl 64
+OS `Linux&#39;
+</code></pre><p>🧠 <strong>Insight</strong>: Detected MySQL and web server; TTL suggests a Linux host.</p>
+<hr>
+<h2 id="-real-world-scenario-internal-reconnaissance">🧑‍💻 Real-World Scenario: Internal Reconnaissance<a hidden class="anchor" aria-hidden="true" href="#-real-world-scenario-internal-reconnaissance">#</a></h2>
+<h3 id="-goal">🎯 Goal<a hidden class="anchor" aria-hidden="true" href="#-goal">#</a></h3>
+<p>Identify web, SSH, and MySQL services in <code>192.168.50.0/24</code>, store logs for analysis, and detect operating systems.</p>
+<h3 id="-command">🧵 Command<a hidden class="anchor" aria-hidden="true" href="#-command">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo unicornscan -r300 -Iv -eosdetect -mT 192.168.50.0/24:22,80,443,3306 -w scan_results.pcap
+</span></span></code></pre></div><ul>
+<li><code>-r300</code> → Control scan speed</li>
+<li><code>-eosdetect</code> → TTL-based OS guessing</li>
+<li><code>-w</code> → Save PCAP for Wireshark</li>
+</ul>
+<p>📥 Sample Output:</p>
+<pre tabindex="0"><code>TCP open 192.168.50.10:22  ttl 64 OS `Linux&#39;
+TCP open 192.168.50.10:80  ttl 64 OS `Linux&#39;
+TCP open 192.168.50.15:443 ttl 128 OS `Windows&#39;
+TCP open 192.168.50.20:3306 ttl 64 OS `Linux&#39;
+</code></pre><h3 id="-analysis-table">🧠 Analysis Table<a hidden class="anchor" aria-hidden="true" href="#-analysis-table">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>IP</th>
+          <th>Ports</th>
+          <th>OS Guess</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>192.168.50.10</td>
+          <td>22, 80</td>
+          <td>Linux</td>
+      </tr>
+      <tr>
+          <td>192.168.50.15</td>
+          <td>443</td>
+          <td>Windows</td>
+      </tr>
+      <tr>
+          <td>192.168.50.20</td>
+          <td>3306</td>
+          <td>Linux</td>
+      </tr>
+  </tbody>
+</table>
+<p>📊 Use:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wireshark scan_results.pcap
+</span></span></code></pre></div><p>To verify TTL, TCP flags, and handshake behavior.</p>
+<hr>
+<h2 id="-pro-tips">🧠 Pro Tips<a hidden class="anchor" aria-hidden="true" href="#-pro-tips">#</a></h2>
+<ul>
+<li>Use lower <code>-r</code> values on sensitive networks to avoid IDS detection.</li>
+<li>Combine with <code>-mTsFPU</code> for Xmas-style stealthy probes.</li>
+<li>Always log scans using <code>-w</code> for offline analysis.</li>
+<li>Compare results with <strong>Nmap</strong> or <strong>Masscan</strong> for confirmation.</li>
+</ul>
+<hr>
+<h2 id="-final-cheat-sheet">🧰 Final Cheat Sheet<a hidden class="anchor" aria-hidden="true" href="#-final-cheat-sheet">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Use Case</th>
+          <th>Command</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Basic SYN Scan</td>
+          <td><code>unicornscan 10.0.0.5</code></td>
+      </tr>
+      <tr>
+          <td>UDP Service Detection</td>
+          <td><code>unicornscan -mU -r200 -I 10.0.0.5:53</code></td>
+      </tr>
+      <tr>
+          <td>Subnet Multi-Port Scan</td>
+          <td><code>unicornscan -r500 -mT 10.0.0.0/24:80,443</code></td>
+      </tr>
+      <tr>
+          <td>OS Detection + Logging</td>
+          <td><code>unicornscan -eosdetect -mT -w file.pcap target:ports</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-conclusion">🧩 Conclusion<a hidden class="anchor" aria-hidden="true" href="#-conclusion">#</a></h2>
+<p><strong>Unicornscan</strong> is a powerful asset in your recon toolkit. While Nmap offers versatility, Unicornscan excels when <strong>speed</strong>, <strong>stealth</strong>, and <strong>TTL-based OS fingerprinting</strong> matter.</p>
+<hr>
+<p>✍️ <strong>By Rajkumar Kumawat</strong>
+🔗 <a href="https://rjkumarkumawat.github.io">GitHub Blog</a> | <a href="https://medium.com/@rajkumarkumawat.workup">Medium</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://rjkumarkumawat.github.io/tags/unicornscan/">Unicornscan</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/network-scanning/">Network Scanning</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/port-scanning/">Port Scanning</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/ethical-hacking/">Ethical-Hacking</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/osint/">Osint</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/red-team/">Red Team</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/kali-linux/">Kali Linux</a></li>
+      <li><a href="https://rjkumarkumawat.github.io/tags/reconnaissance/">Reconnaissance</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://rjkumarkumawat.github.io/">RajkumaR&#39;s CyberSec Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

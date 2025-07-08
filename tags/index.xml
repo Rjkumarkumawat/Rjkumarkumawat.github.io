@@ -6,8 +6,64 @@
     <description>Recent content in Tags on RajkumaR&#39;s CyberSec Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 07 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://rjkumarkumawat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ethical-Hacking</title>
+      <link>https://rjkumarkumawat.github.io/tags/ethical-hacking/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/tags/ethical-hacking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kali Linux</title>
+      <link>https://rjkumarkumawat.github.io/tags/kali-linux/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/tags/kali-linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Network Scanning</title>
+      <link>https://rjkumarkumawat.github.io/tags/network-scanning/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/tags/network-scanning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Osint</title>
+      <link>https://rjkumarkumawat.github.io/tags/osint/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/tags/osint/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Port Scanning</title>
+      <link>https://rjkumarkumawat.github.io/tags/port-scanning/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/tags/port-scanning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reconnaissance</title>
+      <link>https://rjkumarkumawat.github.io/tags/reconnaissance/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/tags/reconnaissance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Red Team</title>
+      <link>https://rjkumarkumawat.github.io/tags/red-team/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/tags/red-team/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Unicornscan</title>
+      <link>https://rjkumarkumawat.github.io/tags/unicornscan/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://rjkumarkumawat.github.io/tags/unicornscan/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cybersecurity</title>
       <link>https://rjkumarkumawat.github.io/tags/cybersecurity/</link>
@@ -20,13 +76,6 @@
       <link>https://rjkumarkumawat.github.io/tags/linux/</link>
       <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://rjkumarkumawat.github.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Network Scanning</title>
-      <link>https://rjkumarkumawat.github.io/tags/network-scanning/</link>
-      <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://rjkumarkumawat.github.io/tags/network-scanning/</guid>
       <description></description>
     </item>
     <item>
@@ -48,13 +97,6 @@
       <link>https://rjkumarkumawat.github.io/tags/cybersecurity-lab/</link>
       <pubDate>Sun, 06 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://rjkumarkumawat.github.io/tags/cybersecurity-lab/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Kali Linux</title>
-      <link>https://rjkumarkumawat.github.io/tags/kali-linux/</link>
-      <pubDate>Sun, 06 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://rjkumarkumawat.github.io/tags/kali-linux/</guid>
       <description></description>
     </item>
     <item>
@@ -86,13 +128,6 @@
       <description></description>
     </item>
     <item>
-      <title>Osint</title>
-      <link>https://rjkumarkumawat.github.io/tags/osint/</link>
-      <pubDate>Sat, 05 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://rjkumarkumawat.github.io/tags/osint/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Recon</title>
       <link>https://rjkumarkumawat.github.io/tags/recon/</link>
       <pubDate>Sat, 05 Jul 2025 00:00:00 +0000</pubDate>
@@ -118,13 +153,6 @@
       <link>https://rjkumarkumawat.github.io/tags/diagnostics/</link>
       <pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://rjkumarkumawat.github.io/tags/diagnostics/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ethical-Hacking</title>
-      <link>https://rjkumarkumawat.github.io/tags/ethical-hacking/</link>
-      <pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://rjkumarkumawat.github.io/tags/ethical-hacking/</guid>
       <description></description>
     </item>
     <item>
@@ -174,13 +202,6 @@
       <link>https://rjkumarkumawat.github.io/tags/google-dorking/</link>
       <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://rjkumarkumawat.github.io/tags/google-dorking/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Reconnaissance</title>
-      <link>https://rjkumarkumawat.github.io/tags/reconnaissance/</link>
-      <pubDate>Tue, 01 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://rjkumarkumawat.github.io/tags/reconnaissance/</guid>
       <description></description>
     </item>
   </channel>
